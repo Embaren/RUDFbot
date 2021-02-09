@@ -17,7 +17,7 @@ module.exports = {
 			
 		console.log(author);
 			if (err) {
-				con.query("INSERT INTO bot_scores (citizen, modifier) VALUES ("+author.username+author.discriminator+",0);", function (err2){if (err2) throw err2;});
+				con.query('INSERT INTO bot_scores (citizen, modifier) VALUES ("'+author.username+author.discriminator+'",0);', function (err2){if (err2) throw err2;});
 				modifier=0;
 				console.log(author.username+author.discriminator);
 			}
