@@ -30,4 +30,4 @@ if (message.content[0]==='€'){
 	}
 });
 
-bot.login('ODA4NzU0NzcwNjky'+'MTQ1MjY1.YCLJkw.TaXMVv'+'6dJTZUPAa0FL_IcnCuCxs');
+bot.login(process.env.BOT_TOKEN);
