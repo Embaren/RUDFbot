@@ -17,7 +17,6 @@ module.exports = {
 			
 		console.log(author);
 			if (err) {
-				throw err;
 				con.query("INSERT INTO bot_scores (citizen, modifier) VALUES ("+author.username+author.discriminator+",0);");
 				modifier=0;
 				console.log(author.username+author.discriminator);
