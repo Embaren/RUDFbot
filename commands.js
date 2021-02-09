@@ -13,7 +13,7 @@ module.exports = {
 	help : function(page=1) {return "**Merci d'utiliser le bod Discord des RUDF !**\nLes commandes sont utilisées avec le préfixe '€' :\n - help : Affiche la liste des commandes\n - ping : Répond 'Pong !'"},
 	ping : function() {return 'Pong !'},
 	score : function(author) {
-		con.query("SELECT modifier FROM bot_scores WHERE citizen ="+author.username+author.discriminator+" LIMIT 1;", function (err,result){
+		con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+author.username+author.discriminator+'" LIMIT 1;', function (err,result){
 			
 		console.log(author);
 			if (err) {
