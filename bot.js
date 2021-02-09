@@ -30,5 +30,4 @@ if (message.content[0]==='€'){
 	}
 });
 
-console.log(process.env.BOT_TOKEN);
 bot.login(process.env.BOT_TOKEN);
