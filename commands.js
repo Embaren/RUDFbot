@@ -24,7 +24,7 @@ module.exports = {
 			text=content.join(' ').trim();
 			if (text!='') callback(text);
 			else callback("impossible de répéter cela.", true);
-		};
+		}
 		else callback('vous devez être un haut fonctionnaire des Républiques pour pouvoir influencer les médias.',true);
 	},
 	
