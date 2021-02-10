@@ -40,7 +40,7 @@ module.exports = {
 		
 			val=Math.floor(Number(content.shift()));
 			
-			if (abs(val)<=100){
+			if (Math.abs(val)<=100){
 			
 				con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+author.username+author.discriminator+'" LIMIT 1;', function (err,result){
 					
