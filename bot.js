@@ -47,6 +47,8 @@ bot.on('message',function(message){
 
 
 bot.on('guildMemberUpdate',function(oldMember,newMember){
+	console.log(newMember.roles.cache.size)
+	console.log(oldMember.roles.cache.size)
 	if (newMember.roles.cache.size != oldMember.roles.cache.size) updateMemRoles(newMember);
 });
 
