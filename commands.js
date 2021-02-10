@@ -14,10 +14,24 @@ function isNormalInteger(str) {
     return n !== Infinity && String(n) === str;
 }
 
-module.exports = {
-	help : function(callback) {callback("**Merci d'utiliser le bod Discord des RUDF !**\nLes commandes sont utilisées avec le préfixe '€' :\n - help : Affiche la liste des commandes\n - ping : Répond 'Pong !'\n - say : Répète ce qui suit\n - score [@user] : Affiche le score de citoyenneté de l'utilisateur\n - scorem [@user] m : Applique un modificateur m au score de citoyenneté de l'utilisateur");},
+function initScore(dest,modifier=0){
+	user=dest.user;
 	
-	ping : function(callback) {callback('Pong !')},
+	con.query('INSERT INTO bot_scores (citizen, modifier) VALUES ("'+user.username+'#'+user.discriminator+'",'+val+');', function (err2){if (err2) throw err2;});
+	
+	if (dest.roles.cache.size > 0){
+		roleArray=[];
+		for (const role of dest.roles.cache){
+			con.query('INSERT INTO bot_roles (citizen, role) VALUES ("'+user.username+'#'+user.discriminator+'",'+role[1].name+');', function (err2){if (err2) throw err2;});
+		}
+	}
+	
+}
+
+module.exports = {
+	help : function(callback) {callback("**Merci d'utiliser le bod Discord des RUDF !**\nLes commandes sont utilisées avec le préfixe '€' :\n - help : Affiche la liste des commandes\n - ping : Répond 'Pong !'\n - say : Répète ce qui suit\n - score [@user] : Affiche le score de citoyenneté de l'utilisateur\n - scorem [@user] m : Applique un modificateur m au score de citoyenneté de l'utilisateur"); return;},
+	
+	ping : function(callback) {callback('Pong !'); return;},
 	
 	say : function(member,content,callback) {
 		if (member.hasPermission("ADMINISTRATOR")) {
@@ -26,14 +40,15 @@ module.exports = {
 			else callback("impossible de répéter cela.", true);
 		}
 		else callback('vous devez être un haut fonctionnaire des Républiques pour pouvoir influencer les médias.',true);
+		return;
 	},
 	
 	score : function(dest,callback) {
 		user=dest.user;
-		con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+user.username+user.discriminator+'" LIMIT 1;', function (err,result){
+		con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+user.username+'#'+user.discriminator+'" LIMIT 1;', function (err,result){
 			
 			if (err || !result.length) {
-				con.query('INSERT INTO bot_scores (citizen, modifier) VALUES ("'+user.username+user.discriminator+'",0);', function (err2){if (err2) throw err2;});
+				initScore(dest);
 				modifier=0;
 			}
 			else {
@@ -64,6 +79,7 @@ module.exports = {
 			}
 			
 		});
+		return;
 	},
 	
 	scorem : function(member,dest,content,callback) {
@@ -79,14 +95,14 @@ module.exports = {
 					con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+user.username+user.discriminator+'" LIMIT 1;', function (err,result){
 						
 						if (err || !result.length) {
-							con.query('INSERT INTO bot_scores (citizen, modifier) VALUES ("'+user.username+user.discriminator+'",'+val+');', function (err2){if (err2) throw err2;});
+							initScore(val);
 							modifier=val;
 						}
 						else {
 							modifier=result[0].modifier+val;
 							if (modifier>1000){modifier=1000}
 							if (modifier<-1000){modifier=-1000}
-							con.query('UPDATE bot_scores SET modifier='+modifier+' WHERE citizen="'+user.username+user.discriminator+'";', function (err2){if (err2) throw err2;});
+							con.query('UPDATE bot_scores SET modifier='+modifier+' WHERE citizen="'+user.username+'#'+user.discriminator+'";', function (err2){if (err2) throw err2;});
 							
 						}
 						
@@ -124,7 +140,8 @@ module.exports = {
 				callback('Modificateur de score non reconnu.');
 			}
 		}
-		else callback('vous devez être un haut fonctionnaire des Républiques pour pouvoir changer un score de citoyenneté.',true)
+		else callback('vous devez être un haut fonctionnaire des Républiques pour pouvoir changer un score de citoyenneté.',true);
+		return;
 	}
 };
 // CREATE USER 'RUDF_bot'@'%' IDENTIFIED BY 'RUDFbot2021';
