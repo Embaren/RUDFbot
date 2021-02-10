@@ -29,18 +29,18 @@ module.exports = {
 			else {
 				modifier=result[0].modifier;
 			}
-			console.log(modifier);
+			console.log(author.username+' : '+modifier);
 			callback("Score : "+modifier);
 		});
 	},
 	
 	scorem : function(author,content,callback) {
 		
-		if(content.length>0 && isNormalInteger(content[0]) ){
+		if (content.length>0 && isNormalInteger(content[0]) ){
 		
-			val=Math.floor(Number(content.shift()))
+			val=Math.floor(Number(content.shift()));
 			
-			if abs(val)<=100{
+			if (abs(val)<=100){
 			
 				con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+author.username+author.discriminator+'" LIMIT 1;', function (err,result){
 					
@@ -52,16 +52,16 @@ module.exports = {
 						con.query('UPDATE bot_scores SET modifier='+modifier+' WHERE citizen="'+author.username+author.discriminator+'";', function (err2){if (err2) throw err2;});
 						
 					}
-					console.log(modifier);
+					console.log(author.username+' : '+modifier);
 					callback("Le modificateur a bien été appliqué.");
 				});
 			}
 			else { 
-				callback('Le modificateur de score doit être inclus entre -100 et 100.')
+				callback('Le modificateur de score doit être inclus entre -100 et 100.');
 			}
 		}
 		else{
-			callback('Modificateur de score non reconnu.')
+			callback('Modificateur de score non reconnu.');
 		}
 	}
 };
