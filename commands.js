@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+const Discord=require('discord.js');
 
 var con = mysql.createPool({
     connexionLimit : 10,
