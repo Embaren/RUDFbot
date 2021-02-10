@@ -6,7 +6,7 @@ const cmds=require('./commands.js');
 
 function memberOrMention(message){
 	mention=message.mentions.members.first();
-	if (!mention) return(message.author);
+	if (!mention) return(message.member);
 	else return(mention);
 }
 
