@@ -55,9 +55,8 @@ module.exports = {
 					roleValue=0;
 					for (const res of result2) {
 						roleValue+=res.value;
-						console.log(res);
 					}
-					callback(`Le score de citoyenneté de ${user} est de **${modifier+roleValue}**.`);
+					callback(`Le score de citoyenneté de ${user} est de **${Math.min(Math.max(modifier+roleValue,-1000),1000)}**.`);
 				});
 			}
 			else {
@@ -105,11 +104,10 @@ module.exports = {
 										throw err2;
 								}
 								roleValue=0;
-								for (res in result2) {
+								for (res of result2) {
 									roleValue+=res.value;
 								}
-								callback(`Le score de citoyenneté de ${user} a été modifié de ${val}, le portant à **${max(modifier+roleValue)}**.`);
-								//Math.min(Math.max(modifier+roleValue,-1000),1000)
+								callback(`Le score de citoyenneté de ${user} a été modifié de ${val}, le portant à **${Math.min(Math.max(modifier+roleValue,-1000),1000)}**.`);
 							});
 						}
 						else {
