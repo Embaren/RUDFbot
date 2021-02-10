@@ -224,12 +224,12 @@ module.exports = {
 						textEmbed.setColor('#318ce7')
 							.setTitle('Classement des citoyens modèles')
 							.addFields(
-								{ name: 'Rang', value: rang },
-								{ name: 'Citoyen', value: citoyens, inline: true },
-								{ name: 'Score', value: scores, inline: true },
+								{ name: 'Rang', value: rang.join('\n') },
+								{ name: 'Citoyen', value: citoyens.join('\n'), inline: true },
+								{ name: 'Score', value: scores.join('\n'), inline: true },
 							)
 							.setFooter('Page '+page+'/'+pageMax);
-						}
+					}
 					
 					callback(textEmbed);
 					connection.release(); // give connection back to the pool	
