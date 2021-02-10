@@ -14,13 +14,13 @@ bot.on('message',function(message){
 						reply=cmds.help(function(reply){message.channel.send(reply);});
 						break;
 					case ('ping'):
-						reply=cmds.ping(function(reply){message.channel.send(reply);});
+						reply=cmds.ping(function(reply){message.reply(reply);});
 						break;
 					case ('score'):
-						reply=cmds.score(message.author,function(reply){message.channel.send(reply);});
+						reply=cmds.score(message.author,function(reply){message.reply(reply);});
 						break;
 					case ('scorem'):
-						reply=cmds.scorem(message.author,content,function(reply){message.channel.send(reply);});
+						reply=cmds.scorem(message.author,content,function(reply){message.reply(reply);});
 						break;
 					default:
 						reply="Requête invalide";
