@@ -89,12 +89,12 @@ module.exports = {
 			.setDescription("Les commandes sont utilisées avec le préfixe '€'. Une étoile (*) indique que les permissions d'administrateur sont nécessaires.")
 			.addFields(
 				{ name: 'Commande', value: commandes[0], inline: true },
-				{ name: 'Description', value: descriptions[0], inline: true }
+				{ name: 'Description', value: descriptions[0], inline: false }
 			);
 			for (i=1;i<commandes.length;i++){
 				textEmbed.addFields(
 					{ name: '** **', value: commandes[i], inline: true },
-					{ name: '** **', value: descriptions[i], inline: true }
+					{ name: '** **', value: descriptions[i], inline: false }
 				);
 			}
 			
