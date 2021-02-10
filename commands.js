@@ -41,7 +41,7 @@ function updateRoles(dest,modifier='NaN'){
 		roleInsert.push([user.username+'#'+user.discriminator,role[1].name]);
 	}
 	
-	con.query('DELETE FROM bot_scores WHERE citizen="'+user.username+'#'+user.discriminator+'";', function (err2){
+	con.query('DELETE FROM bot_roles WHERE citizen="'+user.username+'#'+user.discriminator+'";', function (err2){
 		if (err2) throw err2;
 		else{
 			if (dest.roles.cache.size > 0){
