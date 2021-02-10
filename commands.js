@@ -22,7 +22,7 @@ function initScore(dest,modifier=0){
 	if (dest.roles.cache.size > 0){
 		roleArray=[];
 		for (const role of dest.roles.cache){
-			con.query('INSERT INTO bot_roles (citizen, role) VALUES ("'+user.username+'#'+user.discriminator+'",'+role[1].name+');', function (err2){if (err2) throw err2;});
+			if (role[1].name) con.query('INSERT INTO bot_roles (citizen, role) VALUES ("'+user.username+'#'+user.discriminator+'",'+role[1].name+');', function (err2){if (err2) throw err2;});
 		}
 	}
 	
