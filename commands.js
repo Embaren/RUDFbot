@@ -39,7 +39,25 @@ module.exports = {
 			else {
 				modifier=result[0].modifier;
 			}
-			callback(`Le score de citoyenneté de ${user} est de **${modifier}**.`);
+			if (dest.roles.cache.size > 0){
+				
+				rolesString='Array.from(dest.roles.cache.values()).join('","');
+				
+				con.query('SELECT value FROM bot_role_scores WHERE role IN"'+rolesString+'";', function (err2,result2){
+					if (err2) {
+							throw err2;
+					}
+					roleValue=0;
+					for (res in result2) {
+						roleValue+=res.value;
+					}
+					callback(`Le score de citoyenneté de ${user} est de **${modifier+roleValue}**.`);
+				});
+			}
+			else {
+				callback(`Le score de citoyenneté de ${user} est de **${modifier}**.`);
+			}
+			
 		});
 	},
 	
@@ -66,8 +84,26 @@ module.exports = {
 							con.query('UPDATE bot_scores SET modifier='+modifier+' WHERE citizen="'+user.username+user.discriminator+'";', function (err2){if (err2) throw err2;});
 							
 						}
-						console.log(user.username+' : '+modifier);
-						callback(`Le score de citoyenneté de ${user} a été modifié de ${val}, le portant à **${modifier}**.`);
+						
+						if (dest.roles.cache.size > 0){
+							
+							rolesString='Array.from(dest.roles.cache.values()).join('","');
+							
+							con.query('SELECT value FROM bot_role_scores WHERE role IN"'+rolesString+'";', function (err2,result2){
+								if (err2) {
+										throw err2;
+								}
+								roleValue=0;
+								for (res in result2) {
+									roleValue+=res.value;
+								}
+								callback(`Le score de citoyenneté de ${user} a été modifié de ${val}, le portant à **${modifier+roleValue}**.`);
+							});
+						}
+						else {
+							callback(`Le score de citoyenneté de ${user} a été modifié de ${val}, le portant à **${modifier}**.`);
+						}
+						
 					});
 				}
 				else { 
