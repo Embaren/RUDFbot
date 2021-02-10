@@ -34,7 +34,7 @@ module.exports = {
 	},
 	
 	scorem : function(member,destMember,content,callback) {
-		if member.hasPermission("ADMINISTRATOR"){
+		if (member.hasPermission("ADMINISTRATOR")){
 			user=destMember.user
 			if (content.length>0 && content[0].startsWith('<')) content.shift();
 			if (content.length>0 && isNormalInteger(content[0]) ){
