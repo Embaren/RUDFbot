@@ -29,7 +29,7 @@ bot.on('message',function(message){
 						reply=cmds.score(memberOrMention(message),reply);
 						break;
 					case ('scorem'):
-						reply=cmds.scorem(member,memberOrMention(message),content,reply,);
+						reply=cmds.scorem(member,memberOrMention(message),content,reply);
 						break;
 					default:
 						reply="Requête invalide";

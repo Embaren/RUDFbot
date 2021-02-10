@@ -15,7 +15,7 @@ function isNormalInteger(str) {
 }
 
 module.exports = {
-	help : function(callback) {callback("**Merci d'utiliser le bod Discord des RUDF !**\nLes commandes sont utilisées avec le préfixe '€' :\n - help : Affiche la liste des commandes\n - ping : Répond 'Pong !'\n - score : Affiche votre score de citoyenneté\n - scorem : Applique un modificateur à votre score de citoyenneté");},
+	help : function(callback) {callback("**Merci d'utiliser le bod Discord des RUDF !**\nLes commandes sont utilisées avec le préfixe '€' :\n - help : Affiche la liste des commandes\n - ping : Répond 'Pong !'\n - score [@user] : Affiche le score de citoyenneté de l'utilisateur\n - scorem [@user]: Applique un modificateur au score de citoyenneté de l'utilisateur");},
 	
 	ping : function(callback) {callback('Pong !')},
 	
