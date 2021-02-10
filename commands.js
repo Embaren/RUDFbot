@@ -221,6 +221,10 @@ module.exports = {
 						}
 						rang=Array(citoyens.length).fill().map((x,i)=>i+(page-1)*10+1);
 						
+						console.log(rang.join('\n'));
+						console.log(citoyens.join('\n'));
+						console.log(scores.join('\n'));
+						
 						textEmbed.setColor('#318ce7')
 							.setTitle('Classement des citoyens modèles')
 							.addFields(
