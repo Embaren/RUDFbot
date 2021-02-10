@@ -26,7 +26,24 @@ function initScore(dest,modifier=0){
 		}
 		con.query('INSERT INTO bot_roles (citizen, role) VALUES ?;',[roleArray], function (err2){if (err2) throw err2;});
 	}
+	return;
+}
+
+function updateRoles(dest,modifier='NaN'){
+	user=dest.user;
 	
+	if (modifier!='NaN') con.query('UPDATE bot_scores SET modifier='+modifier+' WHERE citizen="'+user.username+'#'+user.discriminator+'";', function (err2){if (err2) throw err2;});
+	
+	con.query('DELETE FROM bot_scores WHERE citizen="'+user.username+'#'+user.discriminator+'";', function (err2){if (err2) throw err2;});
+	
+	if (dest.roles.cache.size > 0){
+		roleArray=[];
+		for (const role of dest.roles.cache){
+			roleArray.push([user.username,role[1].name]);
+		}
+		con.query('INSERT INTO bot_roles (citizen, role) VALUES ?;',[roleArray], function (err2){if (err2) throw err2;});
+	}
+	return(roleArray)
 }
 
 module.exports = {
@@ -57,10 +74,8 @@ module.exports = {
 			}
 			if (dest.roles.cache.size > 0){
 				
-				roleArray=[];
-				for (const role of dest.roles.cache){
-					roleArray.push(role[1].name);
-				}
+				roleArray=updateRoles(dest);
+				
 				roleString=roleArray.join('","');
 				
 				con.query('SELECT value FROM bot_role_scores WHERE role IN ("'+roleString+'");', function (err2,result2){
@@ -108,10 +123,8 @@ module.exports = {
 						
 						if (dest.roles.cache.size > 0){
 							
-							roleArray=[];
-							for (const role of dest.roles.cache){
-								roleArray.push(role[1].name);
-							}
+							roleArray=updateRoles(dest);
+							
 							roleString=roleArray.join('","');
 							
 							con.query('SELECT value FROM bot_role_scores WHERE role IN ("'+roleString+'");', function (err2,result2){
