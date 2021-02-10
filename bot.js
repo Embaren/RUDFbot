@@ -4,13 +4,15 @@ const bot=new Discord.Client();
 
 const cmds=require('./commands.js');
 
-bot.user.setActivity('€help', { type: 'PLAYING' });
-
 function memberOrMention(message){
 	mention=message.mentions.members.first();
 	if (!mention) return(message.member);
 	else return(mention);
 }
+
+bot.on("ready", () => {
+	bot.user.setActivity(`€help`, {type: "playing"}); 
+});
 
 bot.on('message',function(message){
 	
