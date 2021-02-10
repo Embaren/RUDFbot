@@ -216,7 +216,7 @@ module.exports = {
 							citoyens.push(pos.citoyen);
 							scores.push(Math.min(Math.max(pos.score,-1000),1000));
 						}
-						rang=Array(citoyen.length).fill().map((x,i)=>i+(page-1)*10+1);
+						rang=Array(citoyens.length).fill().map((x,i)=>i+(page-1)*10+1);
 						const textEmbed = new Discord.MessageEmbed()
 							.setcolor('#318ce7')
 							.setTitle('Classement des citoyens modèles')
@@ -227,8 +227,9 @@ module.exports = {
 							)
 							.setFooter('Page '+page+'/'+pageMax);
 						}
-						
+					
 					callback(textEmbed);
+					connection.release(); // give connection back to the pool	
 					
 				});
 					
