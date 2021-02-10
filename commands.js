@@ -222,7 +222,7 @@ module.exports = {
 					throw err;
 				}
 					
-				connection.query('SELECT FOUND_ROWS() AS total;', function (err,totalRows){
+				connection.query('SELECT COUNT(*) AS total FROM bot_roles JOIN bot_scores ON bot_roles.citizen=bot_scores.citizen LEFT JOIN bot_role_scores ON bot_roles.role=bot_role_scores.role GROUP BY bot_roles.citizen;', function (err,totalRows){
 					if (err || !totalRows.length){
 						connection.release(); // give connection back to the pool
 						throw err;
