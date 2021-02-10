@@ -20,7 +20,7 @@ bot.on('message',function(message){
 						reply=cmds.score(message.author,function(reply){message.channel.send(reply);});
 						break;
 					case ('scorem'):
-						reply=cmds.scorec(message.author,content,function(reply){message.channel.send(reply);});
+						reply=cmds.scorem(message.author,content,function(reply){message.channel.send(reply);});
 						break;
 					default:
 						reply="Requête invalide";
