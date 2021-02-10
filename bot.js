@@ -24,7 +24,7 @@ bot.on('message',function(message){
 						reply=cmds.ping(function(reply){message.reply(reply);});
 						break;
 					case ('score'):
-						reply=cmds.score(message.author,function(reply){message.reply(reply);});
+						reply=cmds.score(authorOrMention(message),function(reply){message.reply(reply);});
 						break;
 					case ('scorem'):
 						reply=cmds.scorem(authorOrMention(message),content,function(reply){message.channel.send(reply);});
