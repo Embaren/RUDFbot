@@ -6,7 +6,7 @@ const cmds=require('./commands.js');
 
 function authorOrMention(message){
 	mention=message.mentions.users.first();
-	print(mention.username);
+	console.log(mention.username);
 	if (!mention) return(message.author);
 	else return(mention);
 }
