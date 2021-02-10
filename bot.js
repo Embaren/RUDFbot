@@ -11,7 +11,7 @@ function memberOrMention(message){
 }
 
 bot.on("ready", () => {
-	bot.user.setActivity(`€help`, {type: "playing"}); 
+	bot.user.setActivity('€help', {type: "playing"}); 
 });
 
 bot.on('message',function(message){
