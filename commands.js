@@ -222,13 +222,12 @@ module.exports = {
 					throw err;
 				}
 					
-				connection.query('SELECT COUNT(*) AS total FROM bot_roles JOIN bot_scores ON bot_roles.citizen=bot_scores.citizen LEFT JOIN bot_role_scores ON bot_roles.role=bot_role_scores.role GROUP BY bot_roles.citizen;', function (err,totalRows){
+				connection.query('SELECT COUNT(bot_roles.citizen) AS total FROM bot_roles JOIN bot_scores ON bot_roles.citizen=bot_scores.citizen LEFT JOIN bot_role_scores ON bot_roles.role=bot_role_scores.role GROUP BY bot_roles.citizen;', function (err,totalRows){
 					if (err || !totalRows.length){
 						connection.release(); // give connection back to the pool
 						throw err;
 					}
-					console.log(totalRows[0].total),
-					pageMax=Math.ceil(totalRows[0].total/10);
+					pageMax=Math.ceil(totalRows.length/10);
 					
 					const textEmbed = new Discord.MessageEmbed();
 					
