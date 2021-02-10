@@ -25,11 +25,14 @@ bot.on('message',function(message){
 					case ('ping'):
 						reply=cmds.ping(reply);
 						break;
+					case ('say'):
+						reply=cmds.ping(message.member,content,reply);
+						break;
 					case ('score'):
 						reply=cmds.score(memberOrMention(message),reply);
 						break;
 					case ('scorem'):
-						reply=cmds.scorem(message.member,memberOrMention(message),content,reply);
+						reply=cmds.scorem(message.member,authorOrMention(message),content,reply);
 						break;
 					default:
 						reply="Requête invalide";

@@ -15,9 +15,14 @@ function isNormalInteger(str) {
 }
 
 module.exports = {
-	help : function(callback) {callback("**Merci d'utiliser le bod Discord des RUDF !**\nLes commandes sont utilisées avec le préfixe '€' :\n - help : Affiche la liste des commandes\n - ping : Répond 'Pong !'\n - score [@user] : Affiche le score de citoyenneté de l'utilisateur\n - scorem [@user]: Applique un modificateur au score de citoyenneté de l'utilisateur");},
+	help : function(callback) {callback("**Merci d'utiliser le bod Discord des RUDF !**\nLes commandes sont utilisées avec le préfixe '€' :\n - help : Affiche la liste des commandes\n - ping : Répond 'Pong !'\n - say : Répète ce qui suit\n - score [@user] : Affiche le score de citoyenneté de l'utilisateur\n - scorem [@user]: Applique un modificateur au score de citoyenneté de l'utilisateur");},
 	
 	ping : function(callback) {callback('Pong !')},
+	
+	say : function(member,content,callback) {
+		if (member.hasPermission("ADMINISTRATOR")) callback(content.join(' '));
+		else callback('vous devez être un haut fonctionnaire des Républiques pour pouvoir influencer les médias.',true);
+	},
 	
 	score : function(user,callback) {
 		con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+user.username+user.discriminator+'" LIMIT 1;', function (err,result){
@@ -67,7 +72,7 @@ module.exports = {
 				callback('Modificateur de score non reconnu.');
 			}
 		}
-		else callback('vous devez être un haut fonctionnaire des républiques pour pouvoir changer un score de citoyenneté.',true)
+		else callback('vous devez être un haut fonctionnaire des Républiques pour pouvoir changer un score de citoyenneté.',true)
 	}
 };
 // CREATE USER 'RUDF_bot'@'%' IDENTIFIED BY 'RUDFbot2021';
