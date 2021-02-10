@@ -182,7 +182,7 @@ module.exports = {
 				val=Math.floor(Number(content.shift()))
 				if (val>0) page=val;
 		}
-		conn.getConnection(function(connErr,connection){
+		con.getConnection(function(connErr,connection){
 			if (connErr) {
 				connection.release(); // give connection back to the pool
 				throw connErr;
