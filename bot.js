@@ -14,7 +14,7 @@ if (message.content[0]==='€'){
 					reply=cmds.help();
 					break;
 				case ('ping'):
-					reply=cmds.ping();
+					reply=cmds.ping(function(reply){message.channel.send(reply);});
 					break;
 				case ('score'):
 					reply=cmds.score(message.author);
@@ -26,7 +26,7 @@ if (message.content[0]==='€'){
 		else {
 			reply="Requête invalide";
 		}
-		message.channel.send(reply);
+		//message.channel.send(reply);
 	}
 });
 

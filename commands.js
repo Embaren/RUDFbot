@@ -9,17 +9,17 @@ var con = mysql.createPool({
 	database: "ywv3b7ro3jcrn5hz"
 });
 
+
+
 module.exports = {
 	help : function(page=1) {return "**Merci d'utiliser le bod Discord des RUDF !**\nLes commandes sont utilisées avec le préfixe '€' :\n - help : Affiche la liste des commandes\n - ping : Répond 'Pong !'"},
-	ping : function() {return 'Pong !'},
+	ping : function(callback) {callback('Pong !')},
 	score : function(author) {
 		con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+author.username+author.discriminator+'" LIMIT 1;', function (err,result){
 			
-		console.log(author);
 			if (err) {
 				con.query('INSERT INTO bot_scores (citizen, modifier) VALUES ("'+author.username+author.discriminator+'",0);', function (err2){if (err2) throw err2;});
 				modifier=0;
-				console.log(author.username+author.discriminator);
 			}
 			else {
 				modifier=result[0].modifier;
