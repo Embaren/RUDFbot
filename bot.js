@@ -26,7 +26,7 @@ bot.on('message',function(message){
 						reply=cmds.ping(reply);
 						break;
 					case ('say'):
-						reply=cmds.ping(message.member,content,reply);
+						reply=cmds.say(message.member,content,reply);
 						break;
 					case ('score'):
 						reply=cmds.score(memberOrMention(message),reply);
@@ -35,11 +35,11 @@ bot.on('message',function(message){
 						reply=cmds.scorem(message.member,authorOrMention(message),content,reply);
 						break;
 					default:
-						reply="Requête invalide";
+						reply("Requête invalide",true);
 				}
 			}
 			else {
-				reply="Requête invalide";
+				reply("Requête invalide",true);
 			}
 			//message.channel.send(reply);
 		}
