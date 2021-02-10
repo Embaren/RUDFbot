@@ -86,7 +86,7 @@ module.exports = {
 		const textEmbed = new Discord.MessageEmbed()
 			.setColor('#318ce7')
 			.setTitle("**Merci d'utiliser le bot Discord des RUDF !**")
-			.setDescription("Les commandes sont utilisées avec le préfixe '€'. Une étoile (*) indique que les permissions d'administrateur sont nécessaires.");
+			.setDescription("Les commandes sont utilisées avec le préfixe '**€**'. Une étoile (*) indique que les permissions d'administrateur sont nécessaires.");
 			for (i=0;i<commandes.length;i++){
 				textEmbed.addField(commandes[i], descriptions[i], false );
 			}
@@ -227,6 +227,7 @@ module.exports = {
 						connection.release(); // give connection back to the pool
 						throw err;
 					}
+					console.log(totalRows[0].total),
 					pageMax=Math.ceil(totalRows[0].total/10);
 					
 					const textEmbed = new Discord.MessageEmbed();
