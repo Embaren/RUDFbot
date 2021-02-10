@@ -20,9 +20,13 @@ function initScore(dest,modifier=0){
 	con.query('INSERT INTO bot_scores (citizen, modifier) VALUES ("'+user.username+'#'+user.discriminator+'",'+modifier+');', function (err2){if (err2) throw err2;});
 	
 	if (dest.roles.cache.size > 0){
+		roleArray=[];
 		for (const role of dest.roles.cache){
-			console.log(role[1].name);
-			if (role[1].name) con.query('INSERT INTO bot_roles (citizen, role) VALUES ("'+user.username+'#'+user.discriminator+'",'+role[1].name+');', function (err2){if (err2) throw err2;});
+			roleArray.push(role[1].name);
+		}
+		console.log(roleArray);
+		for (role of roleArray){
+			if (role) con.query('INSERT INTO bot_roles (citizen, role) VALUES ("'+user.username+'#'+user.discriminator+'",'+role[1].name+');', function (err2){if (err2) throw err2;});
 		}
 	}
 	
