@@ -45,7 +45,7 @@ function updateRoles(dest,modifier='NaN'){
 		if (err2) throw err2;
 		else{
 			if (dest.roles.cache.size > 0){
-				con.query('INSERT INTO bot_roles (citizen, role) VALUES ?;',[roleInsert], function (err2){if (err) throw err;});
+				con.query('INSERT INTO bot_roles (citizen, role) VALUES ?;',[roleInsert], function (err){if (err) throw err;});
 			}
 		}
 	});
