@@ -87,7 +87,7 @@ module.exports = {
 						
 						if (dest.roles.cache.size > 0){
 							
-							rolesString='Array.from(dest.roles.cache.values()).join('","');
+							rolesString=Array.from(dest.roles.cache.values()).join('","');
 							
 							con.query('SELECT value FROM bot_role_scores WHERE role IN"'+rolesString+'";', function (err2,result2){
 								if (err2) {
