@@ -52,7 +52,7 @@ bot.on('message',function(message){
 bot.on('guildMemberUpdate',function(oldMember,newMember){
 	console.log(oldMember.roles.cache.size);
 	console.log(newMember.roles.cache.size);
-	if (newMember.roles.cache.size != oldMember.roles.cache.size) updateMemRoles(newMember);
+	//if (newMember.roles.cache.size != oldMember.roles.cache.size) updateMemRoles(newMember);
 });
 
 bot.on('roleUpdate',function(oldRole,newRole){
