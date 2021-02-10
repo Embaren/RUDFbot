@@ -22,7 +22,7 @@ module.exports = {
 	score : function(author,callback) {
 		con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+author.username+author.discriminator+'" LIMIT 1;', function (err,result){
 			
-			if (err) {
+			if (err || !result.length) {
 				con.query('INSERT INTO bot_scores (citizen, modifier) VALUES ("'+author.username+author.discriminator+'",0);', function (err2){if (err2) throw err2;});
 				modifier=0;
 			}
@@ -44,8 +44,9 @@ module.exports = {
 			
 				con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+user.username+user.discriminator+'" LIMIT 1;', function (err,result){
 					
-					if (err) {
+					if (err || !result.length) {
 						con.query('INSERT INTO bot_scores (citizen, modifier) VALUES ("'+user.username+user.discriminator+'",'+val+');', function (err2){if (err2) throw err2;});
+						modifier=val;
 					}
 					else {
 						modifier=result[0].modifier+val;
