@@ -41,10 +41,14 @@ module.exports = {
 			}
 			if (dest.roles.cache.size > 0){
 				
-				rolesString=Array.from(dest.roles.cache.values()).join('","');
-				console.log(rolesString);
+				roleArray=[];
+				for role of dest.roles.cache{
+					roleArray.push(role.name);
+				}
+				roleString=roleArray.join('","');
+				console.log(roleString);
 				
-				con.query('SELECT value FROM bot_role_scores WHERE role IN ("'+rolesString+'");', function (err2,result2){
+				con.query('SELECT value FROM bot_role_scores WHERE role IN ("'+roleString+'");', function (err2,result2){
 					if (err2) {
 							throw err2;
 					}
@@ -88,9 +92,9 @@ module.exports = {
 						
 						if (dest.roles.cache.size > 0){
 							
-							rolesString=Array.from(dest.roles.cache.values()).join('","');
+							roleString=Array.from(dest.roles.cache.values()).join('","');
 							
-							con.query('SELECT value FROM bot_role_scores WHERE role IN ("'+rolesString+'");', function (err2,result2){
+							con.query('SELECT value FROM bot_role_scores WHERE role IN ("'+roleString+'");', function (err2,result2){
 								if (err2) {
 										throw err2;
 								}
