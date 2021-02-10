@@ -53,9 +53,9 @@ module.exports = {
 							throw err2;
 					}
 					roleValue=0;
-					console.log(result2);
-					for (res in result2) {
+					for (const res of result2) {
 						roleValue+=res.value;
+						console.log(res);
 					}
 					callback(`Le score de citoyenneté de ${user} est de **${modifier+roleValue}**.`);
 				});
