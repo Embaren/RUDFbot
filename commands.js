@@ -114,7 +114,7 @@ module.exports = {
 				
 				if (Math.abs(val)<=100){
 				
-					con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+user.username+user.discriminator+'" LIMIT 1;', function (err,result){
+					con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+user.username+"#"+user.discriminator+'" LIMIT 1;', function (err,result){
 						
 						if (err || !result.length) {
 							initScore(val);
