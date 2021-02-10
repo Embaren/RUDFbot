@@ -45,4 +45,13 @@ bot.on('message',function(message){
 		}
 });
 
+
+bot.on('guildMemberUpdate',function(oldMember,newMember){
+	if (newMember.roles.cache.size != oldMember.roles.cache.size) updateMemRoles(newMember);
+});
+
+bot.on('roleUpdate',function(oldRole,newRole){
+	
+});
+
 bot.login(process.env.BOT_TOKEN);

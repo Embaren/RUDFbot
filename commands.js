@@ -29,7 +29,7 @@ function initScore(dest,modifier=0){
 	return;
 }
 
-function updateRoles(dest,modifier='NaN'){
+function updateMemberRoles(dest,modifier='NaN'){
 	user=dest.user;
 	
 	if (modifier!='NaN') con.query('UPDATE bot_scores SET modifier='+modifier+' WHERE citizen="'+user.username+'#'+user.discriminator+'";', function (err2){if (err2) throw err2;});
@@ -54,6 +54,17 @@ function updateRoles(dest,modifier='NaN'){
 }
 
 module.exports = {
+	
+	updateMemRoles : function(member) {
+		updateMemberRoles(member)
+		return;
+	},
+	
+	updateRole : function(oldName,newName) {
+		
+		return;
+	},
+	
 	help : function(callback) {callback("**Merci d'utiliser le bod Discord des RUDF !**\nLes commandes sont utilisées avec le préfixe '€' :\n - help : Affiche la liste des commandes\n - ping : Répond 'Pong !'\n - say : Répète ce qui suit\n - score [@user] : Affiche le score de citoyenneté de l'utilisateur\n - scorem [@user] m : Applique un modificateur m au score de citoyenneté de l'utilisateur"); return;},
 	
 	ping : function(callback) {callback('Pong !'); return;},
@@ -81,7 +92,7 @@ module.exports = {
 			}
 			if (dest.roles.cache.size > 0){
 				
-				roleArray=updateRoles(dest);
+				roleArray=updateMemberRoles(dest);
 				
 				roleString=roleArray.join('","');
 				
@@ -130,7 +141,7 @@ module.exports = {
 						
 						if (dest.roles.cache.size > 0){
 							
-							roleArray=updateRoles(dest);
+							roleArray=updateMemberRoles(dest);
 							
 							roleString=roleArray.join('","');
 							
