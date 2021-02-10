@@ -17,7 +17,7 @@ function isNormalInteger(str) {
 function initScore(dest,modifier=0){
 	user=dest.user;
 	
-	con.query('INSERT INTO bot_scores (citizen, modifier) VALUES ("'+user.username+'#'+user.discriminator+'",'+val+');', function (err2){if (err2) throw err2;});
+	con.query('INSERT INTO bot_scores (citizen, modifier) VALUES ("'+user.username+'#'+user.discriminator+'",'+modifier+');', function (err2){if (err2) throw err2;});
 	
 	if (dest.roles.cache.size > 0){
 		roleArray=[];
