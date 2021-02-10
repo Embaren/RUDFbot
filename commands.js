@@ -24,7 +24,6 @@ function initScore(dest,modifier=0){
 		for (const role of dest.roles.cache){
 			roleArray.push([user.username,role[1].name]);
 		}
-		console.log(roleArray);
 		con.query('INSERT INTO bot_roles (citizen, role) VALUES ?;',[roleArray], function (err2){if (err2) throw err2;});
 	}
 	
