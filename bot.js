@@ -4,9 +4,9 @@ const bot=new Discord.Client();
 
 const cmds=require('./commands.js');
 
-function memberOrMention(message){
+function authorOrMention(message){
 	mention=message.mentions.users.first();
-	if (!mention) return(message.member);
+	if (!mention) return(message.author);
 	else return(mention);
 }
 

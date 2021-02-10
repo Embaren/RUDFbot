@@ -33,9 +33,8 @@ module.exports = {
 		});
 	},
 	
-	scorem : function(member,destMember,content,callback) {
+	scorem : function(member,user,content,callback) {
 		if (member.hasPermission("ADMINISTRATOR")){
-			user=destMember.user;
 			if (content.length>0 && content[0].startsWith('<')) content.shift();
 			if (content.length>0 && isNormalInteger(content[0]) ){
 			
