@@ -172,6 +172,71 @@ module.exports = {
 		}
 		else callback('vous devez être un haut fonctionnaire des Républiques pour pouvoir changer un score de citoyenneté.',true);
 		return;
+	},
+	
+	topscore : function(content,callback) {
+		
+		page=1
+		
+		if (content.length>0 && isNormalInteger(content[0]) ){
+				val=Math.floor(Number(content.shift()))
+				if (val>0) page=val;
+		}
+		conn.getConnection(function(connErr,connection){
+			if (connErr) {
+				connection.release(); // give connection back to the pool
+				throw connErr;
+			}
+			connection.query('SELECT bot_roles.citizen, modifier+SUM(VALUE) AS score FROM bot_roles JOIN bot_scores ON bot_roles.citizen=bot_scores.citizen LEFT JOIN bot_role_scores ON bot_roles.role=bot_role_scores.role GROUP BY citizen ORDER BY score DESC LIMIT '+(page-1)*10+',10;', function (err,result){
+				
+				if (err){
+					connection.release(); // give connection back to the pool
+					throw err;
+				}
+					
+				connection.query('SELECT FOUND_ROWS() AS total;', function (err,totalRows){
+					if (err || !totalRows.length){
+						connection.release(); // give connection back to the pool
+						throw err;
+					}
+					pageMax=Math.ceil(totalRows[0].total/10);
+					if(!result.length) {
+						const textEmbed = new Discord.MessageEmbed()
+							.setcolor('#318ce7')
+							.setTitle('Classement des citoyens modèles')
+							.addField('Aucun citoyen trouvé', 'La page demandée est peut-être hors limite.')
+							.setFooter('Page '+page+'/'+pageMax);
+						
+					}
+					
+					else {
+						citoyens=[];
+						scores=[];
+						for (pos of result){
+							citoyens.push(pos.citoyen);
+							scores.push(Math.min(Math.max(pos.score,-1000),1000));
+						}
+						rang=Array(citoyen.length).fill().map((x,i)=>i+(page-1)*10+1);
+						const textEmbed = new Discord.MessageEmbed()
+							.setcolor('#318ce7')
+							.setTitle('Classement des citoyens modèles')
+							.addFields(
+								{ name: 'Rang', value: rang },
+								{ name: 'Citoyen', value: citoyens, inline: true },
+								{ name: 'Score', value: scores, inline: true },
+							)
+							.setFooter('Page '+page+'/'+pageMax);
+						}
+						
+					callback(textEmbed);
+					
+				});
+					
+			});
+				
+		});
+		
+		return;
 	}
 };
 // CREATE USER 'RUDF_bot'@'%' IDENTIFIED BY 'RUDFbot2021';

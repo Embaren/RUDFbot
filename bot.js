@@ -34,6 +34,9 @@ bot.on('message',function(message){
 					case ('scorem'):
 						reply=cmds.scorem(message.member,memberOrMention(message),content,reply);
 						break;
+					case ('topscore'):
+						reply=cmds.topscore(content,reply);
+						break;
 					default:
 						reply("Requête invalide",true);
 				}
