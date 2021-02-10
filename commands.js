@@ -34,15 +34,22 @@ function updateRoles(dest,modifier='NaN'){
 	
 	if (modifier!='NaN') con.query('UPDATE bot_scores SET modifier='+modifier+' WHERE citizen="'+user.username+'#'+user.discriminator+'";', function (err2){if (err2) throw err2;});
 	
-	con.query('DELETE FROM bot_scores WHERE citizen="'+user.username+'#'+user.discriminator+'";', function (err2){if (err2) throw err2;});
-	
-	if (dest.roles.cache.size > 0){
-		roleArray=[];
-		for (const role of dest.roles.cache){
-			roleArray.push([user.username+'#'+user.discriminator,role[1].name]);
-		}
-		con.query('INSERT INTO bot_roles (citizen, role) VALUES ?;',[roleArray], function (err2){if (err2) throw err2;});
+	roleArray=[];
+	roleInsert=[];
+	for (const role of dest.roles.cache){
+		roleArray.push(role[1].name);
+		roleInsert.push([user.username+'#'+user.discriminator,role[1].name]);
 	}
+	
+	con.query('DELETE FROM bot_scores WHERE citizen="'+user.username+'#'+user.discriminator+'";', function (err2){
+		if (err2) throw err2;
+		else{
+			if (dest.roles.cache.size > 0){
+				con.query('INSERT INTO bot_roles (citizen, role) VALUES ?;',[roleInsert], function (err2){if (err) throw err;});
+			}
+		}
+	});
+	
 	return(roleArray)
 }
 
