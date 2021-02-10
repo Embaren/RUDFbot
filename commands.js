@@ -22,12 +22,10 @@ function initScore(dest,modifier=0){
 	if (dest.roles.cache.size > 0){
 		roleArray=[];
 		for (const role of dest.roles.cache){
-			roleArray.push(role[1].name);
+			roleArray.push([user.username,role[1].name]);
 		}
 		console.log(roleArray);
-		for (role of roleArray){
-			if (role) con.query('INSERT INTO bot_roles (citizen, role) VALUES ("'+user.username+'#'+user.discriminator+'",'+role[1].name+');', function (err2){if (err2) throw err2;});
-		}
+		con.query('INSERT INTO bot_roles (citizen, role) VALUES ?;',roleArray, function (err2){if (err2) throw err2;});
 	}
 	
 }
