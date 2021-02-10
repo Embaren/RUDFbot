@@ -224,7 +224,7 @@ module.exports = {
 						textEmbed.setColor('#318ce7')
 							.setTitle('Classement des citoyens modèles')
 							.addFields(
-								{ name: 'Rang', value: rang.join('\n') },
+								{ name: 'Rang', value: rang.join('\n'), inline: true },
 								{ name: 'Citoyen', value: citoyens.join('\n'), inline: true },
 								{ name: 'Score', value: scores.join('\n'), inline: true },
 							)
