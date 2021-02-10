@@ -66,7 +66,34 @@ module.exports = {
 		return;
 	},
 	
-	help : function(callback) {callback("**Merci d'utiliser le bod Discord des RUDF !**\nLes commandes sont utilisées avec le préfixe '€' :\n - help : Affiche la liste des commandes\n - ping : Répond 'Pong !'\n - say : Répète ce qui suit\n - score [@user] : Affiche le score de citoyenneté de l'utilisateur\n - scorem [@user] m : Applique un modificateur m au score de citoyenneté de l'utilisateur"); return;},
+	help : function(callback) {
+		commandes=[
+			"help",
+			"ping",
+			"say * ...",
+			"score [@user]",
+			"scorem * [@user] [i]",
+			"topscore [i]"
+		];
+		descriptions=[
+			"Affiche la liste des commandes",
+			"Répond 'Pong !'",
+			"Répète ce qui suit",
+			"Affiche le score de citoyenneté de l'utilisateur",
+			"Applique un modificateur i au score de citoyenneté de l'utilisateur",
+			"Affiche la page i du classement des citoyens modèles"
+		];
+		const textEmbed = new Discord.MessageEmbed()
+			.setColor('#318ce7')
+			.setTitle("**Merci d'utiliser le bot Discord des RUDF !**")
+			.setDescription("Les commandes sont utilisées avec le préfixe '€'. Une étoile (*) indique que les permissions d'administrateur sont nécessaires.")
+			.addFields(
+				{ name: 'Commande', value: commandes.join('\n'), inline: true },
+				{ name: 'Description', value: descriptions.join('\n'), inline: true }
+			);
+		callback(textEmbed);
+		return;
+	},
 	
 	ping : function(callback) {callback('Pong !'); return;},
 	

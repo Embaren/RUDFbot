@@ -56,8 +56,7 @@ bot.on('guildMemberUpdate',function(oldMember,newMember){
 });
 
 bot.on('roleUpdate',function(oldRole,newRole){
-	console.log(oldRole.name);
-	console.log(newRole.name);
+	console.log(oldRole.name+'->'+newRole.name);
 });
 
 bot.login(process.env.BOT_TOKEN);
