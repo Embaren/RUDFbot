@@ -42,6 +42,7 @@ module.exports = {
 			if (dest.roles.cache.size > 0){
 				
 				rolesString=Array.from(dest.roles.cache.values()).join('","');
+				console.log(roleString);
 				
 				con.query('SELECT value FROM bot_role_scores WHERE role IN ("'+rolesString+'");', function (err2,result2){
 					if (err2) {
@@ -97,7 +98,8 @@ module.exports = {
 								for (res in result2) {
 									roleValue+=res.value;
 								}
-								callback(`Le score de citoyenneté de ${user} a été modifié de ${val}, le portant à **${modifier+roleValue}**.`);
+								callback(`Le score de citoyenneté de ${user} a été modifié de ${val}, le portant à **${max(modifier+roleValue)}**.`);
+								//Math.min(Math.max(modifier+roleValue,-1000),1000)
 							});
 						}
 						else {
