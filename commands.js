@@ -24,7 +24,8 @@ module.exports = {
 		else callback('vous devez être un haut fonctionnaire des Républiques pour pouvoir influencer les médias.',true);
 	},
 	
-	score : function(user,callback) {
+	score : function(dest,callback) {
+		user=dest.user;
 		con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+user.username+user.discriminator+'" LIMIT 1;', function (err,result){
 			
 			if (err || !result.length) {
@@ -38,8 +39,9 @@ module.exports = {
 		});
 	},
 	
-	scorem : function(member,user,content,callback) {
+	scorem : function(member,dest,content,callback) {
 		if (member.hasPermission("ADMINISTRATOR")){
+			user=dest.user;
 			if (content.length>0 && content[0].startsWith('<')) content.shift();
 			if (content.length>0 && isNormalInteger(content[0]) ){
 			

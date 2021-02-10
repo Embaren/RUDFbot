@@ -4,8 +4,8 @@ const bot=new Discord.Client();
 
 const cmds=require('./commands.js');
 
-function authorOrMention(message){
-	mention=message.mentions.users.first();
+function memberOrMention(message){
+	mention=message.mentions.members.first();
 	if (!mention) return(message.author);
 	else return(mention);
 }
@@ -32,7 +32,7 @@ bot.on('message',function(message){
 						reply=cmds.score(memberOrMention(message),reply);
 						break;
 					case ('scorem'):
-						reply=cmds.scorem(message.member,authorOrMention(message),content,reply);
+						reply=cmds.scorem(message.member,memberOrMention(message),content,reply);
 						break;
 					default:
 						reply("Requête invalide",true);
