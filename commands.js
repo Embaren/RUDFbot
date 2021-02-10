@@ -270,5 +270,20 @@ module.exports = {
 		return;
 	}
 };
-// CREATE USER 'RUDF_bot'@'%' IDENTIFIED BY 'RUDFbot2021';
-// GRANT SELECT, INSERT, UPDATE, DELETE ON 3738770_rudf.bot_scores TO 'RUDF_bot'@'%';
+
+// message.channel.fetchMessages().then(async messages => {
+    // console.log(`${messages.size} procuradas.`);
+
+    // let finalArray = [];
+
+    // const putInArray = async (data) => finalArray.push(data);
+    // const handleTime = (timestamp) => moment(timestamp).format("DD/MM/YYYY - hh:mm:ss a").replace("pm", "PM").reaplce("am", "AM"); 
+
+    // for (const message of messages.array().reverse()) await putInArray(`${handleTime(message.timestamp)} ${msg.author.username} : ${msg.content}`); 
+
+    // console.log(finalArray);
+    // console.log(finalArray.length);
+
+// });
+// const channel = client.channels.cache.find(channel => channel.name === channelName)
+// channel.send(message)
