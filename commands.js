@@ -30,7 +30,6 @@ module.exports = {
 				modifier=result[0].modifier;
 			}
 			callback(`Le score de citoyenneté de ${user} est de **${modifier}**.`);
-			callback("Score : "+modifier);
 		});
 	},
 	
