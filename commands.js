@@ -33,38 +33,42 @@ module.exports = {
 		});
 	},
 	
-	scorem : function(user,content,callback) {
-		if (content.length>0 && content[0].startsWith('<')) content.shift();
-		if (content.length>0 && isNormalInteger(content[0]) ){
-		
-			val=Math.floor(Number(content.shift()));
+	scorem : function(member,destMember,content,callback) {
+		if member.hasPermission("ADMINISTRATOR"){
+			user=destMember.user
+			if (content.length>0 && content[0].startsWith('<')) content.shift();
+			if (content.length>0 && isNormalInteger(content[0]) ){
 			
-			if (Math.abs(val)<=100){
-			
-				con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+user.username+user.discriminator+'" LIMIT 1;', function (err,result){
-					
-					if (err || !result.length) {
-						con.query('INSERT INTO bot_scores (citizen, modifier) VALUES ("'+user.username+user.discriminator+'",'+val+');', function (err2){if (err2) throw err2;});
-						modifier=val;
-					}
-					else {
-						modifier=result[0].modifier+val;
-						if (modifier>1000){modifier=1000}
-						if (modifier<-1000){modifier=-1000}
-						con.query('UPDATE bot_scores SET modifier='+modifier+' WHERE citizen="'+user.username+user.discriminator+'";', function (err2){if (err2) throw err2;});
+				val=Math.floor(Number(content.shift()));
+				
+				if (Math.abs(val)<=100){
+				
+					con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+user.username+user.discriminator+'" LIMIT 1;', function (err,result){
 						
-					}
-					console.log(user.username+' : '+modifier);
-					callback(`Le score de citoyenneté de ${user} a été modifié de ${val}, le portant à **${modifier}**.`);
-				});
+						if (err || !result.length) {
+							con.query('INSERT INTO bot_scores (citizen, modifier) VALUES ("'+user.username+user.discriminator+'",'+val+');', function (err2){if (err2) throw err2;});
+							modifier=val;
+						}
+						else {
+							modifier=result[0].modifier+val;
+							if (modifier>1000){modifier=1000}
+							if (modifier<-1000){modifier=-1000}
+							con.query('UPDATE bot_scores SET modifier='+modifier+' WHERE citizen="'+user.username+user.discriminator+'";', function (err2){if (err2) throw err2;});
+							
+						}
+						console.log(user.username+' : '+modifier);
+						callback(`Le score de citoyenneté de ${user} a été modifié de ${val}, le portant à **${modifier}**.`);
+					});
+				}
+				else { 
+					callback('Le modificateur de score doit être inclus entre -100 et 100.');
+				}
 			}
-			else { 
-				callback('Le modificateur de score doit être inclus entre -100 et 100.');
+			else{
+				callback('Modificateur de score non reconnu.');
 			}
 		}
-		else{
-			callback('Modificateur de score non reconnu.');
-		}
+		else callback('vous devez être un haut fonctionnaire des républiques pour pouvoir changer un score de citoyenneté.',true)
 	}
 };
 // CREATE USER 'RUDF_bot'@'%' IDENTIFIED BY 'RUDFbot2021';
