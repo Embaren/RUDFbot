@@ -34,26 +34,28 @@ module.exports = {
 		});
 	},
 	
-	scorem : function(author,content,callback) {
-		
+	scorem : function(user,content,callback) {
+		if (content.length>0 && content[0].startsWith('<')) content.shift();
 		if (content.length>0 && isNormalInteger(content[0]) ){
 		
 			val=Math.floor(Number(content.shift()));
 			
 			if (Math.abs(val)<=100){
 			
-				con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+author.username+author.discriminator+'" LIMIT 1;', function (err,result){
+				con.query('SELECT modifier FROM bot_scores WHERE citizen ="'+user.username+user.discriminator+'" LIMIT 1;', function (err,result){
 					
 					if (err) {
-						con.query('INSERT INTO bot_scores (citizen, modifier) VALUES ("'+author.username+author.discriminator+'",'+val+');', function (err2){if (err2) throw err2;});
+						con.query('INSERT INTO bot_scores (citizen, modifier) VALUES ("'+user.username+user.discriminator+'",'+val+');', function (err2){if (err2) throw err2;});
 					}
 					else {
 						modifier=result[0].modifier+val;
-						con.query('UPDATE bot_scores SET modifier='+modifier+' WHERE citizen="'+author.username+author.discriminator+'";', function (err2){if (err2) throw err2;});
+						if (modifier>1000){modifier=1000}
+						if (modifier<-1000){modifier=-1000}
+						con.query('UPDATE bot_scores SET modifier='+modifier+' WHERE citizen="'+user.username+user.discriminator+'";', function (err2){if (err2) throw err2;});
 						
 					}
-					console.log(author.username+' : '+modifier);
-					callback("Le modificateur a bien été appliqué.");
+					console.log(user.username+' : '+modifier);
+					callback(`${user.username} : votre score de citoyenneté a été modifié de ${val}.`);
 				});
 			}
 			else { 

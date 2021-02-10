@@ -4,6 +4,12 @@ const bot=new Discord.Client();
 
 const cmds=require('./commands.js');
 
+function authorOrMention(message){
+	mention=message.mentions.users.first();
+	if (!mention) return(author);
+	else return(mention);
+}
+
 bot.on('message',function(message){
 	if (message.content[0]==='€'){
 			content=message.content.slice(1).trim().split(/\s+/)
@@ -20,7 +26,7 @@ bot.on('message',function(message){
 						reply=cmds.score(message.author,function(reply){message.reply(reply);});
 						break;
 					case ('scorem'):
-						reply=cmds.scorem(message.author,content,function(reply){message.reply(reply);});
+						reply=cmds.scorem(authorOrMention(message),content,function(reply){message.channel.send(reply);});
 						break;
 					default:
 						reply="Requête invalide";
