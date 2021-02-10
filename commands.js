@@ -201,9 +201,11 @@ module.exports = {
 						throw err;
 					}
 					pageMax=Math.ceil(totalRows[0].total/10);
+					
+					const textEmbed = new Discord.MessageEmbed();
+					
 					if(!result.length) {
-						const textEmbed = new Discord.MessageEmbed()
-							.setcolor('#318ce7')
+						textEmbed.setColor('#318ce7')
 							.setTitle('Classement des citoyens modèles')
 							.addField('Aucun citoyen trouvé', 'La page demandée est peut-être hors limite.')
 							.setFooter('Page '+page+'/'+pageMax);
@@ -218,8 +220,8 @@ module.exports = {
 							scores.push(Math.min(Math.max(pos.score,-1000),1000));
 						}
 						rang=Array(citoyens.length).fill().map((x,i)=>i+(page-1)*10+1);
-						const textEmbed = new Discord.MessageEmbed()
-							.setColor('#318ce7')
+						
+						textEmbed.setColor('#318ce7')
 							.setTitle('Classement des citoyens modèles')
 							.addFields(
 								{ name: 'Rang', value: rang },
