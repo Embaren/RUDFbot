@@ -219,7 +219,7 @@ module.exports = {
 						}
 						rang=Array(citoyens.length).fill().map((x,i)=>i+(page-1)*10+1);
 						const textEmbed = new Discord.MessageEmbed()
-							.setcolor('#318ce7')
+							.setColor('#318ce7')
 							.setTitle('Classement des citoyens modèles')
 							.addFields(
 								{ name: 'Rang', value: rang },
