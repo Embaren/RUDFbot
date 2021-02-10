@@ -43,7 +43,7 @@ module.exports = {
 				
 				roleArray=[];
 				for (const role of dest.roles.cache){
-					roleArray.push(role.name);
+					roleArray.push(role[1].name);
 				}
 				roleString=roleArray.join('","');
 				console.log(roleString);
