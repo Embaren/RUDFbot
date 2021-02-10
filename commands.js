@@ -42,7 +42,7 @@ module.exports = {
 			if (dest.roles.cache.size > 0){
 				
 				roleArray=[];
-				for (role of dest.roles.cache){
+				for (const role of dest.roles.cache){
 					roleArray.push(role.name);
 				}
 				roleString=roleArray.join('","');
