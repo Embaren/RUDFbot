@@ -23,6 +23,9 @@ bot.on('message',function(message){
 			if (typeof content != "undefined" && content != null && content.length != null && content.length > 0 && content[0]!='') {
 				command=content.shift();
 				switch (command){
+					case ('citation'):
+						cmds.citation(bot.channels,reply);
+						break;
 					case ('help'):
 						cmds.help(reply);
 						break;
@@ -37,9 +40,6 @@ bot.on('message',function(message){
 						break;
 					case ('scorem'):
 						cmds.scorem(message.member,memberOrMention(message),content,reply);
-						break;
-					case ('toConsole'):
-						cmds.citation(bot.channels,reply);
 						break;
 					case ('topscore'):
 						cmds.topscore(content,reply);
