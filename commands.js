@@ -69,7 +69,7 @@ module.exports = {
 	citation : function(callback) {
 		 const channel = client.channels.cache.find(channel => channel.name === "💫punchlines-et-citations");
 		 console.log(channel.id);
-	}
+	},
 	
 	help : function(callback) {
 		commandes=[
