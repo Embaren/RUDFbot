@@ -71,13 +71,12 @@ module.exports = {
 		 channel.messages.fetch()
 			.then(messages => callback(messages.filter(message => message.content.includes('"')).random(1)[0].content))
 			.catch(console.error);
-		 //callback(message.content);
-		 //
 		 return;
 	},
 	
 	help : function(callback) {
 		commandes=[
+			"citation",
 			"help",
 			"ping",
 			"say * ...",
@@ -86,6 +85,7 @@ module.exports = {
 			"topscore [i]"
 		];
 		descriptions=[
+			"Renvoie une citation aléatoire du channel 💫punchlines-et-citations",
 			"Affiche la liste des commandes",
 			"Répond 'Pong !'",
 			"Répète ce qui suit",
