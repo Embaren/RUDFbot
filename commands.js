@@ -69,7 +69,8 @@ module.exports = {
 	citation : function(channels,callback) {
 		 const channel = channels.cache.find(channel => channel.id === "779064607443779594");
 		 message=channel.messages.cache.filter(message => message.content.includes('"')).random(1);
-		 callback(message.content);
+		 console.log(message);
+		 //callback(message.content);
 		 return;
 	},
 	
