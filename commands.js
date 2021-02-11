@@ -66,8 +66,8 @@ module.exports = {
 		return;
 	},
 	
-	citation : function(callback) {
-		 const channel = client.channels.cache.find(channel => channel.name === "💫punchlines-et-citations");
+	citation : function(channels,callback) {
+		 const channel = channels.cache.find(channel => channel.name === "💫punchlines-et-citations");
 		 console.log(channel.id);
 	},
 	

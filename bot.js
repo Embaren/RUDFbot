@@ -39,7 +39,7 @@ bot.on('message',function(message){
 						cmds.scorem(message.member,memberOrMention(message),content,reply);
 						break;
 					case ('toConsole'):
-						cmds.citation(reply);
+						cmds.citation(bot.channels,reply);
 						break;
 					case ('topscore'):
 						cmds.topscore(content,reply);
