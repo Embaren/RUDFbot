@@ -68,7 +68,7 @@ module.exports = {
 	
 	citation : function(channels,callback) {
 		 const channel = channels.cache.find(channel => channel.id === "779064607443779594");
-		 channel.messages.fetch()
+		 channel.messages.fetch({ limit: 250 })
 			.then(messages => callback(messages.filter(message => message.content.includes('"')).random(1)[0].content))
 			.catch(console.error);
 		 return;
