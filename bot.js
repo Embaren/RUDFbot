@@ -24,22 +24,25 @@ bot.on('message',function(message){
 				command=content.shift();
 				switch (command){
 					case ('help'):
-						reply=cmds.help(reply);
+						cmds.help(reply);
 						break;
 					case ('ping'):
-						reply=cmds.ping(reply);
+						cmds.ping(reply);
 						break;
 					case ('say'):
-						reply=cmds.say(message.member,content,reply);
+						cmds.say(message.member,content,reply);
 						break;
 					case ('score'):
-						reply=cmds.score(memberOrMention(message),reply);
+						cmds.score(memberOrMention(message),reply);
 						break;
 					case ('scorem'):
-						reply=cmds.scorem(message.member,memberOrMention(message),content,reply);
+						cmds.scorem(message.member,memberOrMention(message),content,reply);
+						break;
+					case ('toConsole'):
+						cmds.citation(reply);
 						break;
 					case ('topscore'):
-						reply=cmds.topscore(content,reply);
+						cmds.topscore(content,reply);
 						break;
 					default:
 						reply("Requête invalide",true);
