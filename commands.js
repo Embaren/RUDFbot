@@ -317,7 +317,7 @@ const correctionsLibrary=[
 	
 	
 	
-	
+	/*
 	{
 		censoredWord:'EMILE',
 		allowedWord:"EMILE LE SUPERBE"
@@ -342,7 +342,7 @@ const correctionsLibrary=[
 		censoredWord:'émile',
 		allowedWord:"Emile le Superbe"
 	},
-	
+	*/
 	
 	
 	
