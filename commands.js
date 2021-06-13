@@ -107,7 +107,7 @@ module.exports = {
 		}
 		
 		if(correctedContent!=message.content){
-			message.delete();
+			await message.delete();
 			message.channel.send(`<@${message.member.id}> a dit : ${correctedContent}`);
 		}
 		return;
