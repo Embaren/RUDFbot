@@ -169,7 +169,7 @@ const correctionsLibrary=[
 	{
 		censoredWord:'La Censure',
 		allowedWord:'La Liberté'
-	
+	},
 	{
 		censoredWord:'LA CENSURE',
 		allowedWord:'LA LIBERTE'
