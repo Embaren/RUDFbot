@@ -225,6 +225,117 @@ const correctionsLibrary=[
 	{
 		censoredWord:'À bas',
 		allowedWord:'Vive'
+	},
+	{
+		censoredWord:'A MORT LES',
+		allowedWord:'LONGUE VIE AUX'
+	},
+	{
+		censoredWord:'À MORT LES',
+		allowedWord:'LONGUE VIE AUX'
+	},
+	{
+		censoredWord:'à mort les',
+		allowedWord:'longue vie aux'
+	},
+	{
+		censoredWord:'A mort les',
+		allowedWord:'Longue vie aux'
+	},
+	{
+		censoredWord:'À mort les',
+		allowedWord:'Longue vie aux'
+	},
+	{
+		censoredWord:'A MORT LE',
+		allowedWord:'LONGUE VIE AU'
+	},
+	{
+		censoredWord:'À MORT LE',
+		allowedWord:'LONGUE VIE AU'
+	},
+	{
+		censoredWord:'à mort le',
+		allowedWord:'longue vie au'
+	},
+	{
+		censoredWord:'A mort le',
+		allowedWord:'Longue vie au'
+	},
+	{
+		censoredWord:'À mort le',
+		allowedWord:'Longue vie au'
+	},
+	{
+		censoredWord:'A MORT',
+		allowedWord:'LONGUE VIE A'
+	},
+	{
+		censoredWord:'À MORT',
+		allowedWord:'LONGUE VIE A'
+	},
+	{
+		censoredWord:'à mort',
+		allowedWord:'longue vie à'
+	},
+	{
+		censoredWord:'A mort',
+		allowedWord:'Longue vie à'
+	},
+	{
+		censoredWord:'À mort',
+		allowedWord:'Longue vie à'
+	},
+	
+	
+	
+	{
+		censoredWord:'LE CŒUR',
+		allowedWord:"L'ESPRIT"
+	},
+	{
+		censoredWord:'LE COEUR',
+		allowedWord:"L'ESPRIT"
+	},
+	{
+		censoredWord:'le coeur',
+		allowedWord:"l'esprit"
+	},
+	{
+		censoredWord:'le cœur',
+		allowedWord:"l'esprit"
+	},
+	{
+		censoredWord:'Le coeur',
+		allowedWord:"L'esprit"
+	},
+	{
+		censoredWord:'Le cœur',
+		allowedWord:"L'esprit"
+	},
+	{
+		censoredWord:'COEUR',
+		allowedWord:'ESPRIT'
+	},
+	{
+		censoredWord:'CŒUR',
+		allowedWord:'ESPRIT'
+	},
+	{
+		censoredWord:'coeur',
+		allowedWord:'esprit'
+	},
+	{
+		censoredWord:'cœur',
+		allowedWord:'esprit'
+	},
+	{
+		censoredWord:'Coeur',
+		allowedWord:'Esprit'
+	},
+	{
+		censoredWord:'Cœur',
+		allowedWord:'Esprit'
 	}
 ];
 
