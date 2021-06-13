@@ -27,6 +27,66 @@ const correctionsLibrary=[
 		allowedWord:'PRESIDENT'
 	},
 	{
+		censoredWord:'dictatrice',
+		allowedWord:'présidente'
+	},
+	{
+		censoredWord:'Dictatrice',
+		allowedWord:'Présidente'
+	},
+	{
+		censoredWord:'DICTATRICE',
+		allowedWord:'PRESIDENTE'
+	},
+	{
+		censoredWord:'DICTATORIAL',
+		allowedWord:'REPUBLICAIN'
+	},
+	{
+		censoredWord:'dictatorial',
+		allowedWord:'républicain'
+	},
+	{
+		censoredWord:'Dictatorial',
+		allowedWord:'Républicain'
+	},
+	{
+		censoredWord:'DESPOTISME',
+		allowedWord:'REPUBLIQUE'
+	},
+	{
+		censoredWord:'despotisme',
+		allowedWord:'république'
+	},
+	{
+		censoredWord:'Despotisme',
+		allowedWord:'République'
+	},
+	{
+		censoredWord:'DESPOTIQUE',
+		allowedWord:'DEMOCRATIQUE'
+	},
+	{
+		censoredWord:'despotique',
+		allowedWord:'démocratique'
+	},
+	{
+		censoredWord:'Despotique',
+		allowedWord:'Démocratique'
+	},
+	{
+		censoredWord:'DESPOTE',
+		allowedWord:"CHEF D'ETAT"
+	},
+	{
+		censoredWord:'despote',
+		allowedWord:"chef d'Etat'"
+	},
+	{
+		censoredWord:'Despote',
+		allowedWord:"Chef d'Etat"
+	},
+	{
 		censoredWord:'censurer',
 		allowedWord:'libérer'
 	},
@@ -39,8 +99,16 @@ const correctionsLibrary=[
 		allowedWord:'LIBERER'
 	},
 	{
+		censoredWord:'la censure',
+		allowedWord:'la liberté'
+	},
+	{
+		censoredWord:'LA CENSURE',
+		allowedWord:'LA LIBERTE'
+	},
+	{
 		censoredWord:'censure',
-		allowedWord:'liberté'
+		allowedWord:'libère'
 	},
 	{
 		censoredWord:'Censure',
@@ -48,7 +116,39 @@ const correctionsLibrary=[
 	},
 	{
 		censoredWord:'CENSURE',
-		allowedWord:'LIBERTE'
+		allowedWord:'LIBERE'
+	},
+	{
+		censoredWord:'censuré',
+		allowedWord:'libéré'
+	},
+	{
+		censoredWord:'Censuré',
+		allowedWord:'Libéré'
+	},
+	{
+		censoredWord:'A BAS',
+		allowedWord:'VIVE'
+	},
+	{
+		censoredWord:'À BAS',
+		allowedWord:'VIVE'
+	},
+	{
+		censoredWord:'à bas',
+		allowedWord:'vive'
+	},
+	{
+		censoredWord:'a bas',
+		allowedWord:'vive'
+	},
+	{
+		censoredWord:'A bas',
+		allowedWord:'Vive'
+	},
+	{
+		censoredWord:'À bas',
+		allowedWord:'Vive'
 	}
 ];
 
