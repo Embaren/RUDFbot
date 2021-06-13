@@ -368,6 +368,10 @@ const correctionsLibrary=[
 		allowedWord:"Emile"
 	},
 	{
+		censoredWord:'Emile le superbe',
+		allowedWord:"Emile"
+	},
+	{
 		censoredWord:'EMILE LE SUPERBE',
 		allowedWord:"EMILE"
 	},
