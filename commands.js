@@ -84,7 +84,7 @@ module.exports = {
 		
 		for (correction in correctionsLibrary) {
 			correctedContent=censorWord(correction,correctedContent);
-			console.log(`Corrected : {correctedContent}, original : {message.content}`);
+			console.log(`Corrected : ${correctedContent}, original : ${message.content}`);
 		}
 		
 		if(correctedContent!=message.content){
