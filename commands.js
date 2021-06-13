@@ -11,6 +11,22 @@ const correctionsLibrary=[
 		allowedWord:'Démocratie'
 	},
 	{
+		censoredWord:'DICTATURE',
+		allowedWord:'DEMOCRATIE'
+	},
+	{
+		censoredWord:'dictateur',
+		allowedWord:'président'
+	},
+	{
+		censoredWord:'Dictateur',
+		allowedWord:'Président'
+	},
+	{
+		censoredWord:'DICTATEUR',
+		allowedWord:'PRESIDENT'
+	},
+	{
 		censoredWord:'censure',
 		allowedWord:'liberté'
 	},
@@ -18,6 +34,10 @@ const correctionsLibrary=[
 		censoredWord:'Censure',
 		allowedWord:'Liberté'
 	}
+	{
+		censoredWord:'CENSURE',
+		allowedWord:'LIBERTE'
+	},
 ]
 
 var con = mysql.createPool({
@@ -85,10 +105,10 @@ module.exports = {
 		
 		console.log(correctionsLibrary);
 		
-		for (correction in correctionsLibrary) {
-			console.log(correction);
-			console.log(`Correction : ${correction.censoredWord}, ${correction.allowedWord}`);
-			correctedContent=censorWord(correction,correctedContent);
+		for (i=0;i<correctionsLibrary.length,i++) {
+			console.log(correctionsLibrary[i]);
+			console.log(`Correction : ${correctionsLibrary[i].censoredWord}, ${correctionsLibrary[i].allowedWord}`);
+			correctedContent=censorWord(correctionsLibrary[i],correctedContent);
 			console.log(`Corrected : ${correctedContent}, original : ${message.content}`);
 		}
 		
