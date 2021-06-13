@@ -102,8 +102,6 @@ module.exports = {
 	censor : function(message){
 		correctedContent=message.content;
 		
-		console.log(correctionsLibrary);
-		
 		for (i=0 ; i<correctionsLibrary.length ; i++) {
 			correctedContent=censorWord(correctionsLibrary[i],correctedContent);
 		}
