@@ -215,20 +215,20 @@ const correctionsLibrary=[
 		allowedWord:'libère'
 	},
 	{
-		censoredWord:'Censure',
-		allowedWord:'Libère'
-	},
-	{
 		censoredWord:'Censure !',
 		allowedWord:'Liberté !'
 	},
 	{
-		censoredWord:'CENSURE',
-		allowedWord:'LIBERE'
+		censoredWord:'Censure',
+		allowedWord:'Libère'
 	},
 	{
 		censoredWord:'CENSURE !',
 		allowedWord:'LIBERTE !'
+	},
+	{
+		censoredWord:'CENSURE',
+		allowedWord:'LIBERE'
 	},
 	{
 		censoredWord:'censuré',
