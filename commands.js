@@ -219,8 +219,16 @@ const correctionsLibrary=[
 		allowedWord:'Libère'
 	},
 	{
+		censoredWord:'Censure !',
+		allowedWord:'Liberté !'
+	},
+	{
 		censoredWord:'CENSURE',
 		allowedWord:'LIBERE'
+	},
+	{
+		censoredWord:'CENSURE !',
+		allowedWord:'LIBERTE !'
 	},
 	{
 		censoredWord:'censuré',
