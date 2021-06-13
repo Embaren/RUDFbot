@@ -317,6 +317,35 @@ const correctionsLibrary=[
 	
 	
 	
+	
+	{
+		censoredWord:'EMILE',
+		allowedWord:"EMILE LE SUPERBE"
+	},
+	{
+		censoredWord:'ÉMILE',
+		allowedWord:"EMILE LE SUPERBE"
+	},
+	{
+		censoredWord:'Emile',
+		allowedWord:"Emile le Superbe"
+	},
+	{
+		censoredWord:'ÉMILE',
+		allowedWord:"Emile le Superbe"
+	},
+	{
+		censoredWord:'emile',
+		allowedWord:"Emile le Superbe"
+	},
+	{
+		censoredWord:'émile',
+		allowedWord:"Emile le Superbe"
+	},
+	
+	
+	
+	
 	{
 		censoredWord:'DU CŒUR',
 		allowedWord:"DE L'ESPRIT"
