@@ -94,7 +94,6 @@ function updateMemberRoles(dest,modifier='NaN'){
 }
 
 function censorWord(correction, content){
-	if(content.includes(correction.censoredWord)) console.log('Found');
 	return(content.replace(correction.censoredWord,correction.allowedWord));
 }
 
@@ -106,15 +105,12 @@ module.exports = {
 		console.log(correctionsLibrary);
 		
 		for (i=0 ; i<correctionsLibrary.length ; i++) {
-			console.log(correctionsLibrary[i]);
-			console.log(`Correction : ${correctionsLibrary[i].censoredWord}, ${correctionsLibrary[i].allowedWord}`);
 			correctedContent=censorWord(correctionsLibrary[i],correctedContent);
-			console.log(`Corrected : ${correctedContent}, original : ${message.content}`);
 		}
 		
 		if(correctedContent!=message.content){
-			console.log(`<@${message.member.id}> a dit : ${correctedContent}`);
-			//message.channel.send(`<@${message.member.id}> a dit : ${correctedContent}`);
+			message.delete();
+			message.channel.send(`<@${message.member.id}> a dit : ${correctedContent}`);
 		}
 		return;
 	},
