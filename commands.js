@@ -73,7 +73,7 @@ function updateMemberRoles(dest,modifier='NaN'){
 	return(roleArray)
 }
 
-censorWord : function(correction){
+function censorWord(correction){
 	return(content.replace(correction.censoredWord,correction.allowedWord));
 }
 
