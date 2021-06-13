@@ -364,6 +364,22 @@ const correctionsLibrary=[
 	
 	// Emile
 	{
+		censoredWord:'émile le superbe',
+		allowedWord:"Emile"
+	},
+	{
+		censoredWord:'émile le Superbe',
+		allowedWord:"Emile"
+	},
+	{
+		censoredWord:'emile le superbe',
+		allowedWord:"Emile"
+	},
+	{
+		censoredWord:'emile le Superbe',
+		allowedWord:"Emile"
+	},
+	{
 		censoredWord:'Emile le Superbe',
 		allowedWord:"Emile"
 	},
@@ -373,6 +389,14 @@ const correctionsLibrary=[
 	},
 	{
 		censoredWord:'EMILE LE SUPERBE',
+		allowedWord:"EMILE"
+	},
+	{
+		censoredWord:'Émile le superbe',
+		allowedWord:"Emile"
+	},
+	{
+		censoredWord:'ÉMILE LE SUPERBE',
 		allowedWord:"EMILE"
 	},
 	{
