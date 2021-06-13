@@ -402,6 +402,28 @@ const correctionsLibrary=[
 	
 	
 	
+	{
+		censoredWord:'Mina la Violente',
+		allowedWord:"Mina"
+	},
+	{
+		censoredWord:'Mina la Violente',
+		allowedWord:"Mina"
+	},
+	{
+		censoredWord:'MINA LA VIOLENTE',
+		allowedWord:"MINA"
+	},
+	{
+		censoredWord:'Mina',
+		allowedWord:"Mina la Violente"
+	},
+	{
+		censoredWord:'MINA',
+		allowedWord:"MINA LA VIOLENTE"
+	},
+	
+	
 	
 	{
 		censoredWord:'DU CŒUR',
