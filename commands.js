@@ -51,6 +51,62 @@ const correctionsLibrary=[
 		allowedWord:'Républicain'
 	},
 	{
+		censoredWord:'LE DESPOTISME',
+		allowedWord:'LA REPUBLIQUE'
+	},
+	{
+		censoredWord:'le DESPOTISME',
+		allowedWord:'la REPUBLIQUE'
+	},
+	{
+		censoredWord:'Le DESPOTISME',
+		allowedWord:'La REPUBLIQUE'
+	},
+	{
+		censoredWord:'le despotisme',
+		allowedWord:'la république'
+	},
+	{
+		censoredWord:'Le despotisme',
+		allowedWord:'La république'
+	},
+	{
+		censoredWord:'le Despotisme',
+		allowedWord:'la République'
+	},
+	{
+		censoredWord:'Ce Despotisme',
+		allowedWord:'Cette République'
+	},
+	{
+		censoredWord:'CE DESPOTISME',
+		allowedWord:'CETTE REPUBLIQUE'
+	},
+	{
+		censoredWord:'ce DESPOTISME',
+		allowedWord:'cette REPUBLIQUE'
+	},
+	{
+		censoredWord:'Ce DESPOTISME',
+		allowedWord:'Cette REPUBLIQUE'
+	},
+	{
+		censoredWord:'ce despotisme',
+		allowedWord:'cette république'
+	},
+	{
+		censoredWord:'Ce despotisme',
+		allowedWord:'Cette république'
+	},
+	{
+		censoredWord:'ce Despotisme',
+		allowedWord:'CETTE République'
+	},
+	{
+		censoredWord:'Ce Despotisme',
+		allowedWord:'Cette République'
+	},
+	{
 		censoredWord:'DESPOTISME',
 		allowedWord:'REPUBLIQUE'
 	},
@@ -103,8 +159,28 @@ const correctionsLibrary=[
 		allowedWord:'la liberté'
 	},
 	{
+		censoredWord:'La censure',
+		allowedWord:'La liberté'
+	},
+	{
+		censoredWord:'la Censure',
+		allowedWord:'la Liberté'
+	},
+	{
+		censoredWord:'La Censure',
+		allowedWord:'La Liberté'
+	
+	{
 		censoredWord:'LA CENSURE',
 		allowedWord:'LA LIBERTE'
+	},
+	{
+		censoredWord:'la CENSURE',
+		allowedWord:'la LIBERTE'
+	},
+	{
+		censoredWord:'La CENSURE',
+		allowedWord:'La LIBERTE'
 	},
 	{
 		censoredWord:'censure',
