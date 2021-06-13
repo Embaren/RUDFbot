@@ -89,7 +89,8 @@ module.exports = {
 		if(correctedContent!=correction){
 			message.channel.send(`<@${message.member.id}> a dit : ${correctedContent}`);
 		}
-	}
+		return;
+	},
 	
 	updateMemRoles : function(member) {
 		updateMemberRoles(member)
