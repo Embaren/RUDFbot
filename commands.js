@@ -465,7 +465,8 @@ module.exports = {
 				console.log("Message not deleted : ");
 				console.log(err);
 			}
-			message.channel.send(`<@${message.member.id}> a dit : ${correctedContent}`);
+			message.channel.send(`<@${message.member.id}> a dit :
+${correctedContent}`);
 		}
 		return;
 	},
