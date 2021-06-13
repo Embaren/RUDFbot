@@ -79,7 +79,7 @@ censorWord : function(correction){
 
 module.exports = {
 	
-	censor : function(message,callback){
+	censor : function(message){
 		correctedContent=message.content;
 		
 		for correction in correctionsLibrary {
