@@ -325,6 +325,31 @@ const correctionsLibrary=[
 	
 	
 	
+	{
+		censoredWord:'la voisine',
+		allowedWord:"l'artichaud"
+	},
+	{
+		censoredWord:'La voisine',
+		allowedWord:"L'artichaud"
+	},
+	{
+		censoredWord:'LA VOISINE',
+		allowedWord:"L'ARTICHAUD"
+	},
+	{
+		censoredWord:'sa voisine',
+		allowedWord:"son artichaud"
+	},
+	{
+		censoredWord:'Sa voisine',
+		allowedWord:"Son artichaud"
+	},
+	{
+		censoredWord:'SA VOISINE',
+		allowedWord:"SON ARTICHAUD"
+	},
+	
 	
 	{
 		censoredWord:'Emile le Superbe',
