@@ -1,6 +1,25 @@
 const mysql = require('mysql');
 const Discord=require('discord.js');
 
+const correctionsLibrary=[
+	{
+		censoredWord:'dictature',
+		allowedWord:'démocratie'
+	},
+	{
+		censoredWord:'Dictature',
+		allowedWord:'Démocratie'
+	},
+	{
+		censoredWord:'censure',
+		allowedWord:'liberté'
+	},
+	{
+		censoredWord:'Censure',
+		allowedWord:'Liberté'
+	}
+]
+
 var con = mysql.createPool({
     connexionLimit : 10,
     host: "jhdjjtqo9w5bzq2t.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
@@ -54,7 +73,23 @@ function updateMemberRoles(dest,modifier='NaN'){
 	return(roleArray)
 }
 
+censorWord : function(correction){
+	return(content.replace(correction.censoredWord,correction.allowedWord));
+}
+
 module.exports = {
+	
+	censor : function(message,callback){
+		correctedContent=message.content;
+		
+		for correction in correctionsLibrary {
+			correctedContent=censorWord(correction,correctedContent);
+		}
+		
+		if(correctedContent!=correction){
+			message.channel.send(`<@${message.member.id}> a dit : ${correctedContent}`);
+		}
+	}
 	
 	updateMemRoles : function(member) {
 		updateMemberRoles(member)
