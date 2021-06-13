@@ -349,6 +349,18 @@ const correctionsLibrary=[
 		censoredWord:'SA VOISINE',
 		allowedWord:"SON ARTICHAUD"
 	},
+	{
+		censoredWord:'voisine',
+		allowedWord:"artichaud"
+	},
+	{
+		censoredWord:'Voisine',
+		allowedWord:"Artichaud"
+	},
+	{
+		censoredWord:'VOISINE',
+		allowedWord:"ARTICHAUD"
+	},
 	
 	
 	{
