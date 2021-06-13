@@ -74,6 +74,7 @@ function updateMemberRoles(dest,modifier='NaN'){
 }
 
 function censorWord(correction, content){
+	if(content.includes(correction.censoredWord)) console.log('Found');
 	return(content.replace(correction.censoredWord,correction.allowedWord));
 }
 
@@ -83,6 +84,7 @@ module.exports = {
 		correctedContent=message.content;
 		
 		for (correction in correctionsLibrary) {
+			console.log(`Correction : ${correction.censoredWord}, ${correction.allowedWord}`);
 			correctedContent=censorWord(correction,correctedContent);
 			console.log(`Corrected : ${correctedContent}, original : ${message.content}`);
 		}
