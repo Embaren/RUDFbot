@@ -33,11 +33,11 @@ const correctionsLibrary=[
 	{
 		censoredWord:'Censure',
 		allowedWord:'Liberté'
-	}
+	},
 	{
 		censoredWord:'CENSURE',
 		allowedWord:'LIBERTE'
-	},
+	}
 ]
 
 var con = mysql.createPool({
