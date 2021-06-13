@@ -362,7 +362,7 @@ const correctionsLibrary=[
 		allowedWord:"ARTICHAUD"
 	},
 	
-	
+	// Emile
 	{
 		censoredWord:'Emile le Superbe',
 		allowedWord:"Emile"
@@ -400,14 +400,13 @@ const correctionsLibrary=[
 		allowedWord:"Emile le Superbe"
 	},
 	
-	
-	
+	// Mina
 	{
 		censoredWord:'Mina la Violente',
 		allowedWord:"Mina"
 	},
 	{
-		censoredWord:'Mina la Violente',
+		censoredWord:'Mina la violente',
 		allowedWord:"Mina"
 	},
 	{
@@ -421,6 +420,32 @@ const correctionsLibrary=[
 	{
 		censoredWord:'MINA',
 		allowedWord:"MINA LA VIOLENTE"
+	},
+	
+	// 
+	{
+		censoredWord:'Kolya le Mélancolique',
+		allowedWord:"Kolya"
+	},
+	{
+		censoredWord:'Kolya le mélancolique',
+		allowedWord:"Kolya"
+	},
+	{
+		censoredWord:'KOLYA LE MELANCOLIQUE',
+		allowedWord:"KOLYA"
+	},
+	{
+		censoredWord:'KOLYA LE MÉLANCOLIQUE',
+		allowedWord:"KOLYA"
+	},
+	{
+		censoredWord:'Kolya',
+		allowedWord:"Kolya le Mélancolique"
+	},
+	{
+		censoredWord:'KOLYA',
+		allowedWord:"KOLYA LE MELANCOLIQUE"
 	},
 	
 	
