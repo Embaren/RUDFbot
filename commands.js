@@ -83,7 +83,10 @@ module.exports = {
 	censor : function(message){
 		correctedContent=message.content;
 		
+		console.log(correctionsLibrary);
+		
 		for (correction in correctionsLibrary) {
+			console.log(correction);
 			console.log(`Correction : ${correction.censoredWord}, ${correction.allowedWord}`);
 			correctedContent=censorWord(correction,correctedContent);
 			console.log(`Corrected : ${correctedContent}, original : ${message.content}`);
