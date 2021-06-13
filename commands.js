@@ -183,12 +183,40 @@ const correctionsLibrary=[
 		allowedWord:'La LIBERTE'
 	},
 	{
+		censoredWord:'une censure',
+		allowedWord:'une liberté'
+	},
+	{
+		censoredWord:'Une censure',
+		allowedWord:'Une liberté'
+	},
+	{
+		censoredWord:'une Censure',
+		allowedWord:'une Liberté'
+	},
+	{
+		censoredWord:'La Censure',
+		allowedWord:'La Liberté'
+	},
+	{
+		censoredWord:'UNE CENSURE',
+		allowedWord:'UNE LIBERTE'
+	},
+	{
+		censoredWord:'une CENSURE',
+		allowedWord:'une LIBERTE'
+	},
+	{
+		censoredWord:'Une CENSURE',
+		allowedWord:'Une LIBERTE'
+	},
+	{
 		censoredWord:'censure',
 		allowedWord:'libère'
 	},
 	{
 		censoredWord:'Censure',
-		allowedWord:'Liberté'
+		allowedWord:'Libère'
 	},
 	{
 		censoredWord:'CENSURE',
@@ -289,6 +317,30 @@ const correctionsLibrary=[
 	
 	
 	
+	{
+		censoredWord:'DU CŒUR',
+		allowedWord:"DE L'ESPRIT"
+	},
+	{
+		censoredWord:'DU COEUR',
+		allowedWord:"DE L'ESPRIT"
+	},
+	{
+		censoredWord:'du coeur',
+		allowedWord:"de l'esprit"
+	},
+	{
+		censoredWord:'du cœur',
+		allowedWord:"de l'esprit"
+	},
+	{
+		censoredWord:'Du coeur',
+		allowedWord:"De l'esprit"
+	},
+	{
+		censoredWord:'Du cœur',
+		allowedWord:"De l'esprit"
+	},
 	{
 		censoredWord:'LE CŒUR',
 		allowedWord:"L'ESPRIT"
