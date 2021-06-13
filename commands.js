@@ -82,7 +82,7 @@ module.exports = {
 	censor : function(message){
 		correctedContent=message.content;
 		
-		for correction in correctionsLibrary {
+		for (correction in correctionsLibrary) {
 			correctedContent=censorWord(correction,correctedContent);
 		}
 		
