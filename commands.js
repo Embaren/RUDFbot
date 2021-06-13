@@ -27,6 +27,18 @@ const correctionsLibrary=[
 		allowedWord:'PRESIDENT'
 	},
 	{
+		censoredWord:'censurer',
+		allowedWord:'libérer'
+	},
+	{
+		censoredWord:'Censurer',
+		allowedWord:'Libérer'
+	},
+	{
+		censoredWord:'CENSURER',
+		allowedWord:'LIBERER'
+	},
+	{
 		censoredWord:'censure',
 		allowedWord:'liberté'
 	},
