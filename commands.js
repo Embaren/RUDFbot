@@ -86,7 +86,8 @@ module.exports = {
 			correctedContent=censorWord(correction,correctedContent);
 		}
 		
-		if(correctedContent!=correction){
+		if(correctedContent!=message.content){
+			console.log(`<@${message.member.id}> a dit : ${correctedContent}`);
 			//message.channel.send(`<@${message.member.id}> a dit : ${correctedContent}`);
 		}
 		return;
