@@ -87,7 +87,7 @@ module.exports = {
 		}
 		
 		if(correctedContent!=correction){
-			message.channel.send(`<@${message.member.id}> a dit : ${correctedContent}`);
+			//message.channel.send(`<@${message.member.id}> a dit : ${correctedContent}`);
 		}
 		return;
 	},
