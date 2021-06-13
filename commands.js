@@ -38,7 +38,7 @@ const correctionsLibrary=[
 		censoredWord:'CENSURE',
 		allowedWord:'LIBERTE'
 	}
-]
+];
 
 var con = mysql.createPool({
     connexionLimit : 10,
@@ -105,7 +105,7 @@ module.exports = {
 		
 		console.log(correctionsLibrary);
 		
-		for (i=0;i<correctionsLibrary.length,i++) {
+		for (i=0 ; i<correctionsLibrary.length ; i++) {
 			console.log(correctionsLibrary[i]);
 			console.log(`Correction : ${correctionsLibrary[i].censoredWord}, ${correctionsLibrary[i].allowedWord}`);
 			correctedContent=censorWord(correctionsLibrary[i],correctedContent);
