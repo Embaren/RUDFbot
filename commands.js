@@ -4,15 +4,15 @@ const Discord=require('discord.js');
 const correctionsLibrary=[
 	{
 		censoredWord:'dictature',
-		allowedWord:'démocratie'
+		allowedWord:'république'
 	},
 	{
 		censoredWord:'Dictature',
-		allowedWord:'Démocratie'
+		allowedWord:'République'
 	},
 	{
 		censoredWord:'DICTATURE',
-		allowedWord:'DEMOCRATIE'
+		allowedWord:'REPUBLIQUE'
 	},
 	{
 		censoredWord:'dictateur',
@@ -52,71 +52,71 @@ const correctionsLibrary=[
 	},
 	{
 		censoredWord:'LE DESPOTISME',
-		allowedWord:'LA REPUBLIQUE'
+		allowedWord:'LA DEMOCRATIE'
 	},
 	{
 		censoredWord:'le DESPOTISME',
-		allowedWord:'la REPUBLIQUE'
+		allowedWord:'la DEMOCRATIE'
 	},
 	{
 		censoredWord:'Le DESPOTISME',
-		allowedWord:'La REPUBLIQUE'
+		allowedWord:'La DEMOCRATIE'
 	},
 	{
 		censoredWord:'le despotisme',
-		allowedWord:'la république'
+		allowedWord:'la démocratie'
 	},
 	{
 		censoredWord:'Le despotisme',
-		allowedWord:'La république'
+		allowedWord:'La démocratie'
 	},
 	{
 		censoredWord:'le Despotisme',
-		allowedWord:'la République'
+		allowedWord:'la Démocratie'
 	},
 	{
 		censoredWord:'Ce Despotisme',
-		allowedWord:'Cette République'
+		allowedWord:'Cette Démocratie'
 	},
 	{
 		censoredWord:'CE DESPOTISME',
-		allowedWord:'CETTE REPUBLIQUE'
+		allowedWord:'CETTE DEMOCRATIE'
 	},
 	{
 		censoredWord:'ce DESPOTISME',
-		allowedWord:'cette REPUBLIQUE'
+		allowedWord:'cette DEMOCRATIE'
 	},
 	{
 		censoredWord:'Ce DESPOTISME',
-		allowedWord:'Cette REPUBLIQUE'
+		allowedWord:'Cette DEMOCRATIE'
 	},
 	{
 		censoredWord:'ce despotisme',
-		allowedWord:'cette république'
+		allowedWord:'cette démocratie'
 	},
 	{
 		censoredWord:'Ce despotisme',
-		allowedWord:'Cette république'
+		allowedWord:'Cette démocratie'
 	},
 	{
 		censoredWord:'ce Despotisme',
-		allowedWord:'CETTE République'
+		allowedWord:'CETTE Démocratie'
 	},
 	{
 		censoredWord:'Ce Despotisme',
-		allowedWord:'Cette République'
+		allowedWord:'Cette Démocratie'
 	},
 	{
 		censoredWord:'DESPOTISME',
-		allowedWord:'REPUBLIQUE'
+		allowedWord:'DEMOCRATIE'
 	},
 	{
 		censoredWord:'despotisme',
-		allowedWord:'république'
+		allowedWord:'démocratie'
 	},
 	{
 		censoredWord:'Despotisme',
-		allowedWord:'République'
+		allowedWord:'Démocratie'
 	},
 	{
 		censoredWord:'DESPOTIQUE',
