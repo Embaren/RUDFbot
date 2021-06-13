@@ -107,7 +107,13 @@ module.exports = {
 		}
 		
 		if(correctedContent!=message.content){
-			await message.delete();
+			try{
+				message.delete();
+			}
+			catch(err){
+				console.log("Message not deleted : ");
+				console.log(err);
+			}
 			message.channel.send(`<@${message.member.id}> a dit : ${correctedContent}`);
 		}
 		return;
