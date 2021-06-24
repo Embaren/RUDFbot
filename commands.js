@@ -239,6 +239,26 @@ const correctionsLibrary=[
 		allowedWord:'Libéré'
 	},
 	{
+		censoredWord:'LA BAS',
+		allowedWord:'LA-BAS'
+	},
+	{
+		censoredWord:'LÀ BAS ',
+		allowedWord:'LÀ-BAS '
+	},
+	{
+		censoredWord:'la bas ',
+		allowedWord:'là-bas '
+	},
+	{
+		censoredWord:'là bas',
+		allowedWord:'là-bas'
+	},
+	{
+		censoredWord:'Là bas',
+		allowedWord:'Là-bas'
+	},
+	{
 		censoredWord:'A BAS',
 		allowedWord:'VIVE'
 	},
@@ -261,6 +281,18 @@ const correctionsLibrary=[
 	{
 		censoredWord:'À bas',
 		allowedWord:'Vive'
+	},
+	{
+		censoredWord:'lvive',
+		allowedWord:'la bas'
+	},
+	{
+		censoredWord:'Lvive',
+		allowedWord:'La bas'
+	},
+	{
+		censoredWord:'LVIVE',
+		allowedWord:'LA BAS'
 	},
 	{
 		censoredWord:'A MORT LES',
@@ -473,78 +505,18 @@ const correctionsLibrary=[
 	},
 	
 	
-	
+	// S'il
 	{
-		censoredWord:'DU CŒUR',
-		allowedWord:"DE L'ESPRIT"
+		censoredWord:'SI IL',
+		allowedWord:"S'IL"
 	},
 	{
-		censoredWord:'DU COEUR',
-		allowedWord:"DE L'ESPRIT"
+		censoredWord:'Si il',
+		allowedWord:"S'il"
 	},
 	{
-		censoredWord:'du coeur',
-		allowedWord:"de l'esprit"
-	},
-	{
-		censoredWord:'du cœur',
-		allowedWord:"de l'esprit"
-	},
-	{
-		censoredWord:'Du coeur',
-		allowedWord:"De l'esprit"
-	},
-	{
-		censoredWord:'Du cœur',
-		allowedWord:"De l'esprit"
-	},
-	{
-		censoredWord:'LE CŒUR',
-		allowedWord:"L'ESPRIT"
-	},
-	{
-		censoredWord:'LE COEUR',
-		allowedWord:"L'ESPRIT"
-	},
-	{
-		censoredWord:'le coeur',
-		allowedWord:"l'esprit"
-	},
-	{
-		censoredWord:'le cœur',
-		allowedWord:"l'esprit"
-	},
-	{
-		censoredWord:'Le coeur',
-		allowedWord:"L'esprit"
-	},
-	{
-		censoredWord:'Le cœur',
-		allowedWord:"L'esprit"
-	},
-	{
-		censoredWord:'COEUR',
-		allowedWord:'ESPRIT'
-	},
-	{
-		censoredWord:'CŒUR',
-		allowedWord:'ESPRIT'
-	},
-	{
-		censoredWord:'coeur',
-		allowedWord:'esprit'
-	},
-	{
-		censoredWord:'cœur',
-		allowedWord:'esprit'
-	},
-	{
-		censoredWord:'Coeur',
-		allowedWord:'Esprit'
-	},
-	{
-		censoredWord:'Cœur',
-		allowedWord:'Esprit'
+		censoredWord:'si il',
+		allowedWord:"s'il"
 	}
 ];
 
