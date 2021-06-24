@@ -574,7 +574,7 @@ function updateMemberRoles(dest,modifier='NaN'){
 }
 
 function censorWord(correction, content){
-	return(content.replace(correction.censoredWord,correction.allowedWord));
+	return(content.replace(new RegExp(correction.censoredWord, "g"),correction.allowedWord));
 }
 
 module.exports = {
