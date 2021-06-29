@@ -18,6 +18,8 @@ bot.on('message',function(message){
 	
 	if(message.author.bot) return;
 	
+	if (message.content.startsWith('http')) return;
+	
 	function reply(text,tag=false){if (tag) message.reply(text); else message.channel.send(text);}
 	
 	cmds.censor(message);
