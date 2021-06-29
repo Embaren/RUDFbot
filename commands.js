@@ -195,8 +195,24 @@ const correctionsLibrary=[
 		allowedWord:'une Liberté'
 	},
 	{
-		censoredWord:'La Censure',
-		allowedWord:'La Liberté'
+		censoredWord:'cette censure',
+		allowedWord:'cette liberté'
+	},
+	{
+		censoredWord:'Cette censure',
+		allowedWord:'Cette liberté'
+	},
+	{
+		censoredWord:'cette Censure',
+		allowedWord:'cette Liberté'
+	},
+	{
+		censoredWord:'Cette Censure',
+		allowedWord:'Cette Liberté'
+	},
+	{
+		censoredWord:'Une Censure',
+		allowedWord:'Une Liberté'
 	},
 	{
 		censoredWord:'UNE CENSURE',
@@ -209,6 +225,18 @@ const correctionsLibrary=[
 	{
 		censoredWord:'Une CENSURE',
 		allowedWord:'Une LIBERTE'
+	},
+	{
+		censoredWord:'CETTE CENSURE',
+		allowedWord:'CETTE LIBERTE'
+	},
+	{
+		censoredWord:'cette CENSURE',
+		allowedWord:'cette LIBERTE'
+	},
+	{
+		censoredWord:'Cette CENSURE',
+		allowedWord:'Cette LIBERTE'
 	},
 	{
 		censoredWord:'censure',
@@ -293,6 +321,18 @@ const correctionsLibrary=[
 	{
 		censoredWord:'LVIVE',
 		allowedWord:'LA BAS'
+	},
+	{
+		censoredWord:'vivee',
+		allowedWord:'à base'
+	},
+	{
+		censoredWord:'Vivee',
+		allowedWord:'A base'
+	},
+	{
+		censoredWord:'VIVEE',
+		allowedWord:'A BASE'
 	},
 	{
 		censoredWord:'A MORT LES',
