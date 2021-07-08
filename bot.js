@@ -16,13 +16,13 @@ bot.on("ready", () => {
 
 bot.on('message',function(message){
 	
-	if(message.author.bot) return;
+	if (message.author.bot) return;
 	
 	if (message.content.startsWith('http')) return;
 	
-	function reply(text,tag=false){if (tag) message.reply(text); else message.channel.send(text);}
+	function reply(text,tag=false) {if (tag) message.reply(text); else message.channel.send(text);}
 	
-	cmds.censor(message);
+	if (!message?.channel?.name.includes("citation")) {cmds.censor(message)};
 	
 	if (message.content[0]==='€'){
 			content=message.content.slice(1).trim().split(/\s+/)
