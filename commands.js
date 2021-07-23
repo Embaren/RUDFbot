@@ -551,6 +551,10 @@ const correctionsLibrary=[
 		allowedWord:"S'IL"
 	},
 	{
+		censoredWord:'SI\\*_ _\\*IL',
+		allowedWord:"S'IL"
+	},
+	{
 		censoredWord:'SI\\*\\* \\*\\*IL',
 		allowedWord:"S'IL"
 	},
@@ -563,6 +567,10 @@ const correctionsLibrary=[
 		allowedWord:"S'il"
 	},
 	{
+		censoredWord:'Si\\*_ _\\*il',
+		allowedWord:"S'il"
+	},
+	{
 		censoredWord:'Si\\*\\* \\*\\*il',
 		allowedWord:"S'il"
 	},
@@ -572,6 +580,10 @@ const correctionsLibrary=[
 	},
 	{
 		censoredWord:'si\\*\\*\\* \\*\\*\\*il',
+		allowedWord:"s'il"
+	},
+	{
+		censoredWord:'si\\*_ _\\*il',
 		allowedWord:"s'il"
 	},
 	{
