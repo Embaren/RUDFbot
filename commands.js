@@ -547,12 +547,24 @@ const correctionsLibrary=[
 	
 	// S'il
 	{
+		censoredWord:'SI** **IL',
+		allowedWord:"S'IL"
+	},
+	{
 		censoredWord:'SI IL',
 		allowedWord:"S'IL"
 	},
 	{
+		censoredWord:'Si** **il',
+		allowedWord:"S'il"
+	},
+	{
 		censoredWord:'Si il',
 		allowedWord:"S'il"
+	},
+	{
+		censoredWord:'si** **il',
+		allowedWord:"s'il"
 	},
 	{
 		censoredWord:'si il',
