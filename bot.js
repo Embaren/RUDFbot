@@ -22,7 +22,7 @@ bot.on('message',function(message){
 	
 	function reply(text,tag=false) {if (tag) message.reply(text); else message.channel.send(text);}
 	
-	if (!message?.channel?.name.includes("citation")) {cmds.censor(message)};
+	if (!(message?.channel?.name.includes("citation")||message?.channel?.name.includes("allocution")||message?.channel?.name.includes("lois")||message?.channel?.name.includes("papier")||message?.channel?.name.includes("intime"))) {cmds.censor(message)};
 	
 	if (message.content[0]==='€'){
 			content=message.content.slice(1).trim().split(/\s+/)
