@@ -567,7 +567,7 @@ const correctionsLibrary=[
 		allowedWord:"S'IL"
 	},
 	{
-		censoredWord:'SI\ IL', // Non-breaking space
+		censoredWord:'SI\xa0IL', // Non-breaking space
 		allowedWord:"S'IL"
 	},
 	{
@@ -591,6 +591,10 @@ const correctionsLibrary=[
 		allowedWord:"S'il"
 	},
 	{
+		censoredWord:'Si\xa0il', // Non-breaking space
+		allowedWord:"S'il"
+	},
+	{
 		censoredWord:'si\\*\\*\\* \\*\\*\\*il',
 		allowedWord:"s'il"
 	},
@@ -611,7 +615,7 @@ const correctionsLibrary=[
 		allowedWord:"s'il"
 	},
 	{
-		censoredWord:'si\ il', // Non-breaking space
+		censoredWord:'si\xa0il', // Non-breaking space
 		allowedWord:"s'il"
 	}
 ];
@@ -675,15 +679,7 @@ function censorWord(correction, content){
 
 module.exports = {
 	
-	censor : function(message){
-		for(i=0;i<message.content.length;i++){
-			console.log(message.content + " code "+i+" : " + message.content.charCodeAt(i));
-		}
-		testString='si\xa0il'; // Non-breaking space
-		for(i=0;i<testString.length;i++){
-			console.log(testString + " ref code "+i+" : " + testString.charCodeAt(i));
-		}
-		
+	censor : function(message){		
 		correctedContent=message.content;
 		
 		for (i=0 ; i<correctionsLibrary.length ; i++) {
