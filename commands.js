@@ -567,6 +567,10 @@ const correctionsLibrary=[
 		allowedWord:"S'IL"
 	},
 	{
+		censoredWord:'SI IL', //  Non-breaking space
+		allowedWord:"S'IL"
+	},
+	{
 		censoredWord:'Si\\*\\*\\* \\*\\*\\*il',
 		allowedWord:"S'il"
 	},
