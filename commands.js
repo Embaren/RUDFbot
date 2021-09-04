@@ -677,7 +677,7 @@ module.exports = {
 	
 	censor : function(message){
 		for(i=0;i<message.content.length;i++){
-			console.log(message.content + " code "+i+" : " + message.contente.charCodeAt(i));
+			console.log(message.content + " code "+i+" : " + message.content.charCodeAt(i));
 		}
 		correctedContent=message.content;
 		
