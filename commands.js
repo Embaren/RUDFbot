@@ -567,7 +567,7 @@ const correctionsLibrary=[
 		allowedWord:"S'IL"
 	},
 	{
-		censoredWord:'SI IL', //  Non-breaking space
+		censoredWord:'SI\ IL', // Non-breaking space
 		allowedWord:"S'IL"
 	},
 	{
@@ -611,7 +611,7 @@ const correctionsLibrary=[
 		allowedWord:"s'il"
 	},
 	{
-		censoredWord:'si il', //  Non-breaking space
+		censoredWord:'si\ il', // Non-breaking space
 		allowedWord:"s'il"
 	}
 ];
