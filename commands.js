@@ -676,15 +676,14 @@ function censorWord(correction, content){
 module.exports = {
 	
 	censor : function(message){
-		referenceContent=message.content;
-		referenceContent.replace(/[\u202F\u00A0]/g, " ");
-		correctedContent=referenceContent;
+		console.log(message.content);
+		correctedContent=message.content;
 		
 		for (i=0 ; i<correctionsLibrary.length ; i++) {
 			correctedContent=censorWord(correctionsLibrary[i],correctedContent);
 		}
 		
-		if(correctedContent!=referenceContent){
+		if(correctedContent!=message.content){
 			try{
 				message.delete();
 			}
