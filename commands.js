@@ -679,7 +679,7 @@ module.exports = {
 		for(i=0;i<message.content.length;i++){
 			console.log(message.content + " code "+i+" : " + message.content.charCodeAt(i));
 		}
-		testString='si\ il'; // Non-breaking space
+		testString='si\xa0il'; // Non-breaking space
 		for(i=0;i<testString.length;i++){
 			console.log(testString + " ref code "+i+" : " + testString.charCodeAt(i));
 		}
