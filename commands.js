@@ -676,7 +676,9 @@ function censorWord(correction, content){
 module.exports = {
 	
 	censor : function(message){
-		console.log(message.content);
+		for(i=0;i<message.content.length;i++){
+			console.log(message.content + " code "+i+" : " + message.contente.charCodeAt(i));
+		}
 		correctedContent=message.content;
 		
 		for (i=0 ; i<correctionsLibrary.length ; i++) {
