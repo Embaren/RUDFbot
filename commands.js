@@ -571,8 +571,8 @@ const correctionsLibrary=[
 		allowedWord:"S'IL"
 	},
 	{
-		censoredWord:'SI\xa0IL', // Non-breaking space
-		allowedWord:"S'IL"
+		censoredWord:' SI\xa0IL', // Non-breaking space
+		allowedWord:" S'IL"
 	},
 	{
 		censoredWord:'Si\\*\\*\\* \\*\\*\\*il',
@@ -603,24 +603,24 @@ const correctionsLibrary=[
 		allowedWord:"S'il"
 	},
 	{
-		censoredWord:'si\\*\\*\\* \\*\\*\\*il',
-		allowedWord:"s'il"
+		censoredWord:' si\\*\\*\\* \\*\\*\\*il',
+		allowedWord:" s'il"
 	},
 	{
-		censoredWord:'si\\*_ _\\*il',
-		allowedWord:"s'il"
+		censoredWord:' si\\*_ _\\*il',
+		allowedWord:" s'il"
 	},
 	{
-		censoredWord:'si\\*\\*_ _\\*\\*il',
-		allowedWord:"s'il"
+		censoredWord:' si\\*\\*_ _\\*\\*il',
+		allowedWord:" s'il"
 	},
 	{
-		censoredWord:'si\\*\\* \\*\\*il',
-		allowedWord:"s'il"
+		censoredWord:' si\\*\\* \\*\\*il',
+		allowedWord:" s'il"
 	},
 	{
-		censoredWord:'si il',
-		allowedWord:"s'il"
+		censoredWord:' si il',
+		allowedWord:" s'il"
 	},
 	{
 		censoredWord:'si\\*\\*\xa0\\*\\*il', // Non-breaking space
