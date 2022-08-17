@@ -729,7 +729,7 @@ ${correctedContent}`);
 		
 		expTag = user.username+'#'+user.discriminator;
 		destTag = content[0];
-		if(! isDiscordTag){
+		if(! isDiscordTag(destTag)){
 			callback(["*"+destTag+"* n'est pas un tag Discord :","'Celui-ci doit être sous la forme [username#discriminator], par exemple *Goldorak#6969*"]);
 			return;
 		}
@@ -737,6 +737,7 @@ ${correctedContent}`);
 		relationship = content[1];
 		if (! isRelationValid(relationship)){
 			callback(["*"+relationship+"* n'est pas une relation valide, celle-ci doit correspondre à un nombre entre 0 et "+relationshipList.length-1+"."].concat(getRelationshipDesc()));
+			return;
 		}
 		message = content.slice(2,content.length).join(' ').trim();
 		
@@ -774,7 +775,7 @@ ${correctedContent}`);
 		
 		expTag = user.username+'#'+user.discriminator;
 		destTag = content[0];
-		if(! isDiscordTag){
+		if(! isDiscordTag(destTag)){
 			callback(["*"+destTag+"* n'est pas un tag Discord :","'Celui-ci doit être sous la forme [username#discriminator], par exemple *Goldorak#6969*"]);
 			return;
 		}
@@ -783,6 +784,7 @@ ${correctedContent}`);
 		relationship = content[1];
 		if (! isRelationValid(relationship)){
 			callback(["*"+relationship+"* n'est pas une relation valide, celle-ci doit correspondre à un nombre entre 0 et "+relationshipList.length-1+"."].concat(getRelationshipDesc()));
+			return;
 		}
 		message = content.slice(2,content.length).join(' ').trim();
 		
@@ -828,7 +830,7 @@ ${correctedContent}`);
 		
 		expTag = user.username+'#'+user.discriminator;
 		destTag = content[0];
-		if(! isDiscordTag){
+		if(! isDiscordTag(destTag)){
 			callback(["*"+destTag+"* n'est pas un tag Discord :","'Celui-ci doit être sous la forme [username#discriminator], par exemple *Goldorak#6969*"]);
 			return;
 		}
@@ -836,6 +838,7 @@ ${correctedContent}`);
 		relationship = content[1];
 		if (! isRelationValid(relationship)){
 			callback(["*"+relationship+"* n'est pas une relation valide, celle-ci doit correspondre à un nombre entre 0 et "+relationshipList.length-1+"."].concat(getRelationshipDesc()));
+			return;
 		}
 		
 		hash = crypto.createHash('sha256').update(expTag+destTag+relationship, 'binary').digest('hex');
