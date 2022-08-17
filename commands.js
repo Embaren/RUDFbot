@@ -714,11 +714,11 @@ ${correctedContent}`);
 		relationship = content[1];
 		message = content.slice(2,content.length).join(' ').trim();
 		
-		hash1 = crypto.createHash('sha256').update(expTag+destTag+relationship, 'binary', 'hex');
-		hash2 = crypto.createHash('sha256').update(destTag+expTag+relationship, 'hex', 'utf8');
+		hash1 = crypto.createHash('sha256').update(expTag+destTag+relationship, 'binary').digest('hex');
+		hash2 = crypto.createHash('sha256').update(destTag+expTag+relationship, 'binary').digest('hex');
 		
-		encrypted = crypto.createCipher('aes192','destTag').update(message).digest('hex');
-		decrypted = crypto.createDecipher('aes192','destTag').update(encrypted).digest('hex');
+		encrypted = crypto.createCipher('aes192','destTag').update(message, 'binary', 'hex');
+		decrypted = crypto.createDecipher('aes192','destTag').update(encrypted,  'hex', 'utf8');
 		
 		text=([expTag,destTag,relationship,hash1,hash2,message,encrypted,decrypted]).join('/').trim();
 		if (text!='') callback(text);
