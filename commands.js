@@ -711,12 +711,16 @@ ${correctedContent}`);
 		
 		expTag = user.username+'#'+user.discriminator;
 		destTag = content[0];
-		hash1 = crypto.createHash('sha256').update(expTag+destTag, 'binary').digest('hex');
-		hash2 = crypto.createHash('sha256').update(destTag+expTag, 'binary').digest('hex');
 		relationship = content[1];
 		message = content.slice(2,content.length).join(' ').trim();
 		
-		text=([expTag,destTag,hash1,hash2,relationship,message]).join('/').trim();
+		hash1 = crypto.createHash('sha256').update(expTag+destTag+relationship, 'binary').digest('hex');
+		hash2 = crypto.createHash('sha256').update(destTag+expTag+relationship, 'binary').digest('hex');
+		
+		encrypted = crypto.createCipher('aes192','destTag').update(message).digest('hex');
+		decrypted = crypto.createDecipher('aes192','destTag').update(encrypted).digest('hex');
+		
+		text=([expTag,destTag,relationship,hash1,hash2,message,encrypted,decrypted]).join('/').trim();
 		if (text!='') callback(text);
 		else callback("impossible d'écrire cela.", true);
 		return;
