@@ -22,7 +22,7 @@ bot.on('message',function(message){
 	
 	function reply(text,tag=false) {if (tag) message.reply(text); else message.channel.send(text);}
 	
-	if message.guild === null{
+	if (message?.guild) === null{
 		if (message.content[0]==='€'){
 				content=message.content.slice(1).trim().split(/\s+/)
 				if (typeof content != "undefined" && content != null && content.length != null && content.length > 0 && content[0]!='') {
