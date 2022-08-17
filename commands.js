@@ -864,7 +864,7 @@ ${correctedContent}`);
 		];
 		descriptions=[
 			"Déclare anonymement un crush sur un utilisateur Discord. Le type de relation espéré est indiqué ",
-			"Supprime un crush enregistré. Si par la suite un crush réciproque est enregistré, personne ne sera au courant ! Attention : il n'est pas possible de supprimé un crush qui a déjà été réciproqué. Comme ça pas possible de l'ajouter pour vérifier et de disparaître juste ensuite, c'est donc que du sincère !",
+			"Supprime un crush enregistré. Si par la suite un crush réciproque est enregistré, personne ne sera au courant ! Attention : il n'est pas possible de supprimer un crush qui a déjà été réciproqué. Comme ça pas possible de l'ajouter pour vérifier et de disparaître juste ensuite, c'est donc que du sincère !",
 			"Vérifie si un crush est réciproque. Si c'est le cas, vous découvrirez le message qui vous a été préparé avec attention, et il est temps de passer à l'action !",
 		];
 		const textEmbed = new Discord.MessageEmbed()
