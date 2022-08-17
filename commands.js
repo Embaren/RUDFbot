@@ -880,8 +880,9 @@ ${correctedContent}`);
 				textEmbed.addField(commandes[i], descriptions[i], false );
 			}
 			relationshipDesc = getRelationshipDesc();
-			for (i=0;i<relationshipDesc.length;i++){
-				textEmbed.addField(relationshipDesc[i], false );
+			textEmbed.addField("Les relations possibles sont:","",false);
+			for (i=0;i<relationshipList.length;i++){
+				textEmbed.addField(i.toString(),relationshipList[i], false );
 			}
 		callback(textEmbed);
 		return;
