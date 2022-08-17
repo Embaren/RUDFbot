@@ -714,8 +714,8 @@ ${correctedContent}`);
 		relationship = content[1];
 		message = content.slice(2,content.length).join(' ').trim();
 		
-		hash1 = crypto.createHash('sha256').update(expTag+destTag+relationship, 'binary').digest('hex');
-		hash2 = crypto.createHash('sha256').update(destTag+expTag+relationship, 'binary').digest('hex');
+		hash1 = crypto.createHash('sha256').update(expTag+destTag+relationship, 'binary').final('hex');
+		hash2 = crypto.createHash('sha256').update(destTag+expTag+relationship, 'binary').final('hex');
 		
 		encrypted = crypto.createCipher('aes192','destTag').update(message).digest('hex');
 		decrypted = crypto.createDecipher('aes192','destTag').update(encrypted).digest('hex');
