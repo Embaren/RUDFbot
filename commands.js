@@ -880,9 +880,9 @@ ${correctedContent}`);
 				textEmbed.addField(commandes[i], descriptions[i], false );
 			}
 			relationshipDesc = getRelationshipDesc();
-			textEmbed.addField("Les relations possibles sont:","",false);
+			textEmbed.addField("Relations","Les relations sont à renseigner par leur identifiant. Les relations possibles sont :",false);
 			for (i=0;i<relationshipList.length;i++){
-				textEmbed.addField(i.toString(),relationshipList[i], false );
+				textEmbed.addField(i.toString(),relationshipList[i], true );
 			}
 		callback(textEmbed);
 		return;
