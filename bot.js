@@ -40,10 +40,10 @@ bot.on('message',function(message){
 						case ('crush'):
 							cmds.crush(message.author,content,reply)
 							break;
-						case ('removeCrush'):
+						case ('removecrush'):
 							cmds.removeCrush(message.author,content,reply)
 							break;
-						case ('checkCrush'):
+						case ('checkcrush'):
 							cmds.checkCrush(message.author,content,reply)
 							break;
 						default:
