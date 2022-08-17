@@ -9,7 +9,7 @@ function isDiscordTag(string){
 
 const relationshipList = ["Un rencart pour commencer !", "Relation longue", "Le temps d'un soir", "Amis... Et un peu plus ?", "Du virtuel épicé"];
 function isRelationValid(relationship){
-	tagRegExp = new RegExp("^[0-"+relationshipList.length-1+"]+$") ;
+	tagRegExp = new RegExp("^[0-"+(relationshipList.length-1).toString()+"]+$") ;
 	return relationship.length==1 && tagRegExp.test(relationship);
 }
 function getRelationshipDesc(){
@@ -723,20 +723,20 @@ ${correctedContent}`);
 	// ---------------------------------------------------------------------------------------------------------
 	crush : function(user,content,callback) {
 		if (content.length<3){
-			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :",">€crush [username#discriminator] [relationType] [message...]"]);
+			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","> €crush [username#discriminator] [relationType] [message...]"]);
 			return;
 		}
 		
 		expTag = user.username+'#'+user.discriminator;
 		destTag = content[0];
 		if(! isDiscordTag(destTag)){
-			callback(["*"+destTag+"* n'est pas un tag Discord :","'Celui-ci doit être sous la forme [username#discriminator], par exemple *Goldorak#6969*"]);
+			callback(["*"+destTag+"* n'est pas un tag Discord :","Celui-ci doit être sous la forme [username#discriminator], par exemple *Goldorak#6969*"]);
 			return;
 		}
 			
 		relationship = content[1];
 		if (! isRelationValid(relationship)){
-			callback(["*"+relationship+"* n'est pas une relation valide, celle-ci doit correspondre à un nombre entre 0 et "+relationshipList.length-1+"."].concat(getRelationshipDesc()));
+			callback(["*"+relationship+"* n'est pas une relation valide, celle-ci doit correspondre à un nombre entre 0 et "+(relationshipList.length-1).toString()+"."].concat(getRelationshipDesc()));
 			return;
 		}
 		message = content.slice(2,content.length).join(' ').trim();
@@ -751,9 +751,9 @@ ${correctedContent}`);
 		con.query('INSERT INTO bot_crushes (crush_id, message) VALUES ("'+hash+'","'+encrypted+'") ON DUPLICATE KEY UPDATE message = "'+encrypted+'";', function (err2){if (err2) throw err2;});
 
 		callback(["Crush ajouté ! Vous pouvez vérifier s'il est réciproque n'importe quand en utilisant la commande :",
-				  ">€checkcrush nomDUtilisateur#discriminateur typeDeRelation",
+				  "> €checkcrush nomDUtilisateur#discriminateur typeDeRelation",
 				  "Vous également supprimer ce crush en utilisant la commande :",
-				  ">€removecrush nomDUtilisateur#discriminateur typeDeRelation"]);
+				  "> €removecrush nomDUtilisateur#discriminateur typeDeRelation"]);
 			
 		/*
 		decipher = crypto.createDecipher('aes192', tagHash);
@@ -769,21 +769,21 @@ ${correctedContent}`);
 	
 	checkcrush : function(user,content,callback) {
 		if (content.length!=2){
-			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :",">€crush [username#discriminator] [relationType]"]);
+			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","> €checkcrush [username#discriminator] [relationType]"]);
 			return;
 		}
 		
 		expTag = user.username+'#'+user.discriminator;
 		destTag = content[0];
 		if(! isDiscordTag(destTag)){
-			callback(["*"+destTag+"* n'est pas un tag Discord :","'Celui-ci doit être sous la forme [username#discriminator], par exemple *Goldorak#6969*"]);
+			callback(["*"+destTag+"* n'est pas un tag Discord :","Celui-ci doit être sous la forme [username#discriminator], par exemple *Goldorak#6969*"]);
 			return;
 		}
 			
 			
 		relationship = content[1];
 		if (! isRelationValid(relationship)){
-			callback(["*"+relationship+"* n'est pas une relation valide, celle-ci doit correspondre à un nombre entre 0 et "+relationshipList.length-1+"."].concat(getRelationshipDesc()));
+			callback(["*"+relationship+"* n'est pas une relation valide, celle-ci doit correspondre à un nombre entre 0 et "+(relationshipList.length-1).toString()+"."].concat(getRelationshipDesc()));
 			return;
 		}
 		message = content.slice(2,content.length).join(' ').trim();
@@ -806,7 +806,7 @@ ${correctedContent}`);
 				decipher = crypto.createDecipher('aes192', tagHash);
 				decipher.update(encrypted, 'hex', 'utf8');
 				decrypted = decipher.final('utf8')
-				callback(["Votre crush est réciproque !! Voilà le message qui vous a été laissé :",">"+decrypted,"C'est le début d'une belle histoire <3"]);
+				callback(["Votre crush est réciproque !! Voilà le message qui vous a été laissé :","> "+decrypted,"C'est le début d'une belle histoire <3"]);
 			});
 			
 		});
@@ -824,7 +824,7 @@ ${correctedContent}`);
 	
 	removecrush : function(user,content,callback) {
 		if (content.length!=2){
-			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :",">€removecrush [username#discriminator] [relationType]"]);
+			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","> €removecrush [username#discriminator] [relationType]"]);
 			return;
 		}
 		
@@ -837,7 +837,7 @@ ${correctedContent}`);
 			
 		relationship = content[1];
 		if (! isRelationValid(relationship)){
-			callback(["*"+relationship+"* n'est pas une relation valide, celle-ci doit correspondre à un nombre entre 0 et "+relationshipList.length-1+"."].concat(getRelationshipDesc()));
+			callback(["*"+relationship+"* n'est pas une relation valide, celle-ci doit correspondre à un nombre entre 0 et "+(relationshipList.length-1).toString()+"."].concat(getRelationshipDesc()));
 			return;
 		}
 		
