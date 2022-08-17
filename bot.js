@@ -35,7 +35,7 @@ bot.on('message',function(message){
 							cmds.help(reply);
 							break;
 						case ('crushhelp'):
-							cmds.crushhelp(r^eply)
+							cmds.crushhelp(reply)
 							break;
 						case ('crush'):
 							cmds.crush(message.author,content,reply)
@@ -72,7 +72,7 @@ bot.on('message',function(message){
 							cmds.help(reply);
 							break;
 						case ('crushhelp'):
-							cmds.crushhelp(r^eply)
+							cmds.crushhelp(reply)
 							break;
 						case ('ping'):
 							cmds.ping(reply);

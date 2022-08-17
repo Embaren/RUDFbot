@@ -812,9 +812,9 @@ ${correctedContent}`);
 		});
 
 		callback(["Crush ajouté ! Vous pouvez vérifier s'il est réciproque n'importe quand en utilisant la commande :",
-				  ">€checkcrush nomDUtilisateur#discriminateur typeDeRelation",
+				  ">€checkcrush [username#discriminator] [relationType]",
 				  "Vous également supprimer ce crush en utilisant la commande :",
-				  ">€removecrush nomDUtilisateur#discriminateur typeDeRelation"]);
+				  ">€removecrush [username#discriminator] [relationType]"]);
 		
 		//text=([expTag,destTag,relationship,hash1,hash2,message,encrypted,decrypted]).join('/').trim();
 		//if (text!='') callback(text);
