@@ -741,7 +741,7 @@ ${correctedContent}`);
 		}
 		message = content.slice(2,content.length).join(' ').trim();
 		
-		hash = crypto.createHash('sha256').update(expTag+destTag+relationship, 'binary').digest('hex');
+		hash = crypto.createHash('sha256').update(expTag+relationship+destTag, 'binary').digest('hex');
 		tagHash = crypto.createHash('sha256').update(destTag, 'binary').digest('hex');
 		
 		cipher = crypto.createCipher('aes192', tagHash);
@@ -788,8 +788,8 @@ ${correctedContent}`);
 		}
 		message = content.slice(2,content.length).join(' ').trim();
 		
-		hash = crypto.createHash('sha256').update(expTag+destTag+relationship, 'binary').digest('hex');
-		revHash = crypto.createHash('sha256').update(destTag+expTag+relationship, 'binary').digest('hex');
+		hash = crypto.createHash('sha256').update(expTag+relationship+destTag, 'binary').digest('hex');
+		revHash = crypto.createHash('sha256').update(destTag+relationship+expTag, 'binary').digest('hex');
 		tagHash = crypto.createHash('sha256').update(expTag, 'binary').digest('hex');
 	
 		con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+hash+'"  LIMIT 1;',  function (err,result){
@@ -807,6 +807,7 @@ ${correctedContent}`);
 				decipher.update(encrypted, 'hex', 'utf8');
 				decrypted = decipher.final('utf8')
 				callback(["Votre crush est réciproque !! Voilà le message qui vous a été laissé :","> "+decrypted,"C'est le début d'une belle histoire <3"]);
+				return;
 			});
 			
 		});
@@ -836,10 +837,10 @@ ${correctedContent}`);
 			return;
 		}
 		
-		hash = crypto.createHash('sha256').update(expTag+destTag+relationship, 'binary').digest('hex');
-		revHash = crypto.createHash('sha256').update(destTag+expTag+relationship, 'binary').digest('hex');
+		hash = crypto.createHash('sha256').update(expTag+relationship+destTag, 'binary').digest('hex');
+		revHash = crypto.createHash('sha256').update(destTag+relationship+expTag, 'binary').digest('hex');
 	
-		con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+hash+'"  LIMIT 1;',  function (err,result){
+		con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+hash+'"',  function (err,result){
 			if (err || !result.length) {
 				callback("Vous ne pouvez pas supprimer un crush que vous n'avez pas vous-même déclaré !");
 				return;
