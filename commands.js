@@ -751,9 +751,9 @@ ${correctedContent}`);
 		con.query('INSERT INTO bot_crushes (crush_id, message) VALUES ("'+hash+'","'+encrypted+'") ON DUPLICATE KEY UPDATE message = "'+encrypted+'";', function (err2){if (err2) throw err2;});
 
 		callback(["Crush ajouté ! Vous pouvez vérifier s'il est réciproque n'importe quand en utilisant la commande :",
-				  "> €checkcrush nomDUtilisateur#discriminateur typeDeRelation",
+				  "> €checkcrush [username#discriminator] [relationType]",
 				  "Vous également supprimer ce crush en utilisant la commande :",
-				  "> €removecrush nomDUtilisateur#discriminateur typeDeRelation"]);
+				  "> €removecrush [username#discriminator] [relationType]"]);
 			
 		/*
 		decipher = crypto.createDecipher('aes192', tagHash);
@@ -792,11 +792,13 @@ ${correctedContent}`);
 		revHash = crypto.createHash('sha256').update(destTag+relationship+expTag, 'binary').digest('hex');
 		tagHash = crypto.createHash('sha256').update(expTag, 'binary').digest('hex');
 	
-		con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+hash+'"  LIMIT 1;',  function (err,result){
+		con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+hash+'" LIMIT 1;',  function (err,result){
 			if (err || !result.length) {
 				callback("Vous ne pouvez pas vérifier un crush que vous n'avez pas vous-même déclaré !");
 				return;
 			}
+			console.log(hash)
+			console.log(revHash)
 			con.query('SELECT message FROM bot_crushes WHERE rolecrush_id = "'+revHash+'";', function (err2,result2){
 				if (err2 || !result2.length) {
 					callback("Ce crush n'est pas réciproque pour le moment... Peut-être demain ?");
@@ -811,10 +813,6 @@ ${correctedContent}`);
 			});
 			
 		});
-		
-		//text=([expTag,destTag,relationship,hash1,hash2,message,encrypted,decrypted]).join('/').trim();
-		//if (text!='') callback(text);
-		//else callback("impossible d'écrire cela.", true);
 		return;
 	},
 	
@@ -857,6 +855,7 @@ ${correctedContent}`);
 			
 		});
 	},
+	
 	crushhelp : function(callback) {
 		commandes=[
 			"crush [username#discriminator] [relationType] [message...]",
