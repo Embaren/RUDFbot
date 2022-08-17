@@ -703,10 +703,17 @@ ${correctedContent}`);
 	
 	// ---------------------------------------------------------------------------------------------------------
 	crush : function(member,content,callback) {
-		callback(content);
-			text=content.join('/').trim();
-			if (text!='') callback(text);
-			else callback("impossible de répéter cela.", true);
+		if (content.length<3){
+			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","'€crush nom#discriminateur typeDeRelation le message à laisser'"])
+		}
+		expTag = member.tag;
+		destTag = content[0];
+		relationship = content[1];
+		message = content.slice(2,content.length).join(' ').trim();
+		
+		text=([expTag,destTag,relationship,message]).join('/').trim();
+		if (text!='') callback(text);
+		else callback("impossible d'écrire cela.", true);
 		return;
 	},
 	// ---------------------------------------------------------------------------------------------------------
