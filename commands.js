@@ -702,11 +702,11 @@ ${correctedContent}`);
 	},
 	
 	// ---------------------------------------------------------------------------------------------------------
-	crush : function(member,content,callback) {
+	crush : function(user,content,callback) {
 		if (content.length<3){
 			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","'€crush nom#discriminateur typeDeRelation le message à laisser'"])
 		}
-		expTag = member.user.tag;
+		expTag = user.username+'#'+user.discriminator;
 		destTag = content[0];
 		relationship = content[1];
 		message = content.slice(2,content.length).join(' ').trim();
