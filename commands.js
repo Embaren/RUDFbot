@@ -1,5 +1,6 @@
 const mysql = require('mysql');
 const Discord=require('discord.js');
+const crypto = require('crypto');
 
 const correctionsLibrary=[
 	{
@@ -707,12 +708,15 @@ ${correctedContent}`);
 			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","'€crush nom#discriminateur typeDeRelation le message à laisser'"]);
 			return;
 		}
+		
 		expTag = user.username+'#'+user.discriminator;
 		destTag = content[0];
+		hash1 = crypto.createHash('sha256').update(expTag+destTag, 'binary').digest('hex');
+		hash2 = crypto.createHash('sha256').update(destTag+expTag, 'binary').digest('hex');
 		relationship = content[1];
 		message = content.slice(2,content.length).join(' ').trim();
 		
-		text=([expTag,destTag,relationship,message]).join('/').trim();
+		text=([expTag,destTag,hash1,hash2,relationship,message]).join('/').trim();
 		if (text!='') callback(text);
 		else callback("impossible d'écrire cela.", true);
 		return;
