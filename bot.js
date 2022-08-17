@@ -31,6 +31,9 @@ bot.on('message',function(message){
 						case ('ping'):
 							cmds.ping(reply);
 							break;
+						case ('help'):
+							cmds.help(reply);
+							break;
 						case ('crush'):
 							cmds.crush(message.member,content,reply)
 							break;

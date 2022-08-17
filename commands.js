@@ -706,7 +706,7 @@ ${correctedContent}`);
 		if (content.length<3){
 			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","'€crush nom#discriminateur typeDeRelation le message à laisser'"])
 		}
-		expTag = member.tag;
+		expTag = member.user.tag;
 		destTag = content[0];
 		relationship = content[1];
 		message = content.slice(2,content.length).join(' ').trim();
