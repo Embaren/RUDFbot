@@ -2,6 +2,24 @@ const mysql = require('mysql');
 const Discord=require('discord.js');
 const crypto = require('crypto');
 
+function isDiscordTag(string){
+	tagRegExp = /\#[0-9]{4}/;
+	return tagRegExp.test(string.slice(-5));
+}
+
+const relationshipList = ["Un rencart pour commencer !", "Relation longue", "Le temps d'un soir", "Amis... Et un peu plus ?", "Du virtuel épicé"];
+function isRelationValid(relationship){
+	tagRegExp = new RegExp("^[0-"+relationshipList.length-1+"]+$") ;
+	return relationship.length==1 && tagRegExp.test(relationship);
+}
+function getRelationshipDesc(){
+	relationshipsDesc = ["Les relations possibles sont :"];
+	for(i = 0 ; i < relationshipList.length ; i++){
+		relationshipsDesc.push(i+" : "+relationshipList[i]);
+	}
+	return relationshipsDesc;
+}
+
 const correctionsLibrary=[
 	{
 		censoredWord:'dictature',
@@ -705,28 +723,164 @@ ${correctedContent}`);
 	// ---------------------------------------------------------------------------------------------------------
 	crush : function(user,content,callback) {
 		if (content.length<3){
-			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","'€crush nom#discriminateur typeDeRelation le message à laisser'"]);
+			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :",">€crush [username#discriminator] [relationType] [message...]"]);
 			return;
 		}
 		
 		expTag = user.username+'#'+user.discriminator;
 		destTag = content[0];
+		if(! isDiscordTag){
+			callback(["*"+destTag+"* n'est pas un tag Discord :","'Celui-ci doit être sous la forme [username#discriminator], par exemple *Goldorak#6969*"]);
+			return;
+		}
+			
 		relationship = content[1];
+		if (! isRelationValid(relationship)){
+			callback(["*"+relationship+"* n'est pas une relation valide, celle-ci doit correspondre à un nombre entre 0 et "+relationshipList.length-1+"."].concat(getRelationshipDesc()));
+		}
 		message = content.slice(2,content.length).join(' ').trim();
 		
-		hash1 = crypto.createHash('sha256').update(expTag+destTag+relationship, 'binary').digest('hex');
-		hash2 = crypto.createHash('sha256').update(destTag+expTag+relationship, 'binary').digest('hex');
+		hash = crypto.createHash('sha256').update(expTag+destTag+relationship, 'binary').digest('hex');
+		tagHash = crypto.createHash('sha256').update(destTag, 'binary').digest('hex');
 		
-		cipher = crypto.createCipher('aes192','destTag');
+		cipher = crypto.createCipher('aes192', tagHash);
 		cipher.update(message, 'binary', 'hex');
 		encrypted = cipher.final('hex')
-		decipher = crypto.createDecipher('aes192','destTag');
+	
+		con.query('INSERT INTO bot_crushes (crush_id, message) VALUES ("'+hash+'","'+encrypted+'") ON DUPLICATE KEY UPDATE message = "'+encrypted+'";', function (err2){if (err2) throw err2;});
+
+		callback(["Crush ajouté ! Vous pouvez vérifier s'il est réciproque n'importe quand en utilisant la commande :",
+				  ">€checkcrush nomDUtilisateur#discriminateur typeDeRelation",
+				  "Vous également supprimer ce crush en utilisant la commande :",
+				  ">€removecrush nomDUtilisateur#discriminateur typeDeRelation"]);
+			
+		/*
+		decipher = crypto.createDecipher('aes192', tagHash);
 		decipher.update(encrypted, 'hex', 'utf8');
 		decrypted = decipher.final('utf8')
+		*/
 		
-		text=([expTag,destTag,relationship,hash1,hash2,message,encrypted,decrypted]).join('/').trim();
-		if (text!='') callback(text);
-		else callback("impossible d'écrire cela.", true);
+		//text=([expTag,destTag,relationship,hash1,hash2,message,encrypted,decrypted]).join('/').trim();
+		//if (text!='') callback(text);
+		//else callback("impossible d'écrire cela.", true);
+		return;
+	},
+	
+	checkcrush : function(user,content,callback) {
+		if (content.length!=2){
+			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :",">€crush [username#discriminator] [relationType]"]);
+			return;
+		}
+		
+		expTag = user.username+'#'+user.discriminator;
+		destTag = content[0];
+		if(! isDiscordTag){
+			callback(["*"+destTag+"* n'est pas un tag Discord :","'Celui-ci doit être sous la forme [username#discriminator], par exemple *Goldorak#6969*"]);
+			return;
+		}
+			
+			
+		relationship = content[1];
+		if (! isRelationValid(relationship)){
+			callback(["*"+relationship+"* n'est pas une relation valide, celle-ci doit correspondre à un nombre entre 0 et "+relationshipList.length-1+"."].concat(getRelationshipDesc()));
+		}
+		message = content.slice(2,content.length).join(' ').trim();
+		
+		hash = crypto.createHash('sha256').update(expTag+destTag+relationship, 'binary').digest('hex');
+		revHash = crypto.createHash('sha256').update(destTag+expTag+relationship, 'binary').digest('hex');
+		tagHash = crypto.createHash('sha256').update(expTag, 'binary').digest('hex');
+	
+		con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+hash+'"  LIMIT 1;',  function (err,result){
+			if (err || !result.length) {
+				callback("Vous ne pouvez pas vérifier un crush que vous n'avez pas vous-même déclaré !");
+				return;
+			}
+			con.query('SELECT message FROM bot_crushes WHERE rolecrush_id = "'+revHash+'";', function (err2,result2){
+				if (err2 || !result2.length) {
+					callback("Ce crush n'est pas réciproque pour le moment... Peut-être demain ?");
+					return;
+				}
+				encrypted = result2[0].message;
+				decipher = crypto.createDecipher('aes192', tagHash);
+				decipher.update(encrypted, 'hex', 'utf8');
+				decrypted = decipher.final('utf8')
+				callback(["Votre crush est réciproque !! Voilà le message qui vous a été laissé :",">"+decrypted,"C'est le début d'une belle histoire <3"]);
+			});
+			
+		});
+
+		callback(["Crush ajouté ! Vous pouvez vérifier s'il est réciproque n'importe quand en utilisant la commande :",
+				  ">€checkcrush nomDUtilisateur#discriminateur typeDeRelation",
+				  "Vous également supprimer ce crush en utilisant la commande :",
+				  ">€removecrush nomDUtilisateur#discriminateur typeDeRelation"]);
+		
+		//text=([expTag,destTag,relationship,hash1,hash2,message,encrypted,decrypted]).join('/').trim();
+		//if (text!='') callback(text);
+		//else callback("impossible d'écrire cela.", true);
+		return;
+	},
+	
+	removecrush : function(user,content,callback) {
+		if (content.length!=2){
+			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :",">€removecrush [username#discriminator] [relationType]"]);
+			return;
+		}
+		
+		expTag = user.username+'#'+user.discriminator;
+		destTag = content[0];
+		if(! isDiscordTag){
+			callback(["*"+destTag+"* n'est pas un tag Discord :","'Celui-ci doit être sous la forme [username#discriminator], par exemple *Goldorak#6969*"]);
+			return;
+		}
+			
+		relationship = content[1];
+		if (! isRelationValid(relationship)){
+			callback(["*"+relationship+"* n'est pas une relation valide, celle-ci doit correspondre à un nombre entre 0 et "+relationshipList.length-1+"."].concat(getRelationshipDesc()));
+		}
+		
+		hash = crypto.createHash('sha256').update(expTag+destTag+relationship, 'binary').digest('hex');
+		revHash = crypto.createHash('sha256').update(destTag+expTag+relationship, 'binary').digest('hex');
+	
+		con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+hash+'"  LIMIT 1;',  function (err,result){
+			if (err || !result.length) {
+				callback("Vous ne pouvez pas supprimer un crush que vous n'avez pas vous-même déclaré !");
+				return;
+			}
+			con.query('SELECT message FROM bot_crushes WHERE rolecrush_id = "'+revHash+'";', function (err2,result2){
+				if (err2 || !result2.length) {
+					con.query('DELETE FROM bot_crushes WHERE crush_id = "'+hash+'";', function (err3){if (err3) throw err3;});
+					callback(["Crush supprimé !"]);
+					return;
+				}
+				callback(["Ce crush est réciproque, il ne peut pas être supprimé. Autrement ce serait bien trop facile de tout savoir comme si de rien n'était !"]);
+				return;
+			});
+			
+		});
+	},
+	crushhelp : function(callback) {
+		commandes=[
+			"crush [username#discriminator] [relationType] [message...]",
+			"removecrush [username#discriminator] [relationType]",
+			"checkcrush [username#discriminator] [relationType]"
+		];
+		descriptions=[
+			"Déclare anonymement un crush sur un utilisateur Discord. Le type de relation espéré est indiqué ",
+			"Supprime un crush enregistré. Si par la suite un crush réciproque est enregistré, personne ne sera au courant ! Attention : il n'est pas possible de supprimé un crush qui a déjà été réciproqué. Comme ça pas possible de l'ajouter pour vérifier et de disparaître juste ensuite, c'est donc que du sincère !",
+			"Vérifie si un crush est réciproque. Si c'est le cas, vous découvrirez le message qui vous a été préparé avec attention, et il est temps de passer à l'action !",
+		];
+		const textEmbed = new Discord.MessageEmbed()
+			.setColor('#318ce7')
+			.setTitle("**Merci d'utiliser le bot Discord des RUDF !**")
+			.setDescription("Les commandes de crush sont utilisées avec le préfixe '**€**' et sont exclusivement utilisable en envoyant un MP au bot RUDF. Il n'est donc pas possible de les utiliser depuis un serveur pour garantir l'anonymat de tous. Toutes les déclarations de crush sont anonymes et invisibles de TOUS, sauf si un crush est réciproque. Dans ce cas, seuls les deux concernés ne seront au courant ! Toutes les informations renseignées chiffrées, ne divulguant ni l'émetteur ni le destinataire du crush, ni le type de relation. Et bien sûr le message est entièrement chiffré également. Ainsi même un accès à la base de donnée ne révèlera rien à vos confessions !");
+			for (i=0;i<commandes.length;i++){
+				textEmbed.addField(commandes[i], descriptions[i], false );
+			}
+			relationshipDesc = getRelationshipDesc();
+			for (i=0;i<relationshipDesc.length;i++){
+				textEmbed.addField(relationshipDesc[i], false );
+			}
+		callback(textEmbed);
 		return;
 	},
 	// ---------------------------------------------------------------------------------------------------------

@@ -34,8 +34,17 @@ bot.on('message',function(message){
 						case ('help'):
 							cmds.help(reply);
 							break;
+						case ('crushhelp'):
+							cmds.crushhelp(r^eply)
+							break;
 						case ('crush'):
 							cmds.crush(message.author,content,reply)
+							break;
+						case ('removeCrush'):
+							cmds.removeCrush(message.author,content,reply)
+							break;
+						case ('checkCrush'):
+							cmds.checkCrush(message.author,content,reply)
 							break;
 						default:
 							reply("Requête invalide",true);
@@ -61,6 +70,9 @@ bot.on('message',function(message){
 							break;
 						case ('help'):
 							cmds.help(reply);
+							break;
+						case ('crushhelp'):
+							cmds.crushhelp(r^eply)
 							break;
 						case ('ping'):
 							cmds.ping(reply);
