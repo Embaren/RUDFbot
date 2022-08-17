@@ -496,28 +496,6 @@ const correctionsLibrary=[
 		allowedWord:"Emile le Superbe"
 	},
 	
-	// Mina
-	{
-		censoredWord:'Mina la Violente',
-		allowedWord:"Mina"
-	},
-	{
-		censoredWord:'Mina la violente',
-		allowedWord:"Mina"
-	},
-	{
-		censoredWord:'MINA LA VIOLENTE',
-		allowedWord:"MINA"
-	},
-	{
-		censoredWord:'Mina',
-		allowedWord:"Mina la Violente"
-	},
-	{
-		censoredWord:'MINA',
-		allowedWord:"MINA LA VIOLENTE"
-	},
-	
 	// 
 	{
 		censoredWord:'Kolya le Mélancolique',
@@ -699,14 +677,7 @@ module.exports = {
 		}
 		
 		if(correctedContent!=message.content){
-			try{
-				message.delete();
-			}
-			catch(err){
-				console.log("Message not deleted : ");
-				console.log(err);
-			}
-			message.channel.send(`**<@${message.member.id}> a dit :**
+			message.channel.send(`**<@${message.member.id}> voulait dire :**
 ${correctedContent}`);
 		}
 		return;
