@@ -701,6 +701,16 @@ ${correctedContent}`);
 		 return;
 	},
 	
+	// ---------------------------------------------------------------------------------------------------------
+	crush : function(member,content,callback) {
+		callback(content);
+			text=content.join('/').trim();
+			if (text!='') callback(text);
+			else callback("impossible de répéter cela.", true);
+		return;
+	},
+	// ---------------------------------------------------------------------------------------------------------
+	
 	help : function(callback) {
 		commandes=[
 			"citation",
