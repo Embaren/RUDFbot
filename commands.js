@@ -704,7 +704,8 @@ ${correctedContent}`);
 	// ---------------------------------------------------------------------------------------------------------
 	crush : function(user,content,callback) {
 		if (content.length<3){
-			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","'€crush nom#discriminateur typeDeRelation le message à laisser'"])
+			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","'€crush nom#discriminateur typeDeRelation le message à laisser'"]);
+			return;
 		}
 		expTag = user.username+'#'+user.discriminator;
 		destTag = content[0];

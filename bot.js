@@ -35,7 +35,7 @@ bot.on('message',function(message){
 							cmds.help(reply);
 							break;
 						case ('crush'):
-							cmds.crush(message.member.user,content,reply)
+							cmds.crush(message.author,content,reply)
 							break;
 						default:
 							reply("Requête invalide",true);
