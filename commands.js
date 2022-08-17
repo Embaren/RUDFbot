@@ -797,9 +797,9 @@ ${correctedContent}`);
 				callback("Vous ne pouvez pas vérifier un crush que vous n'avez pas vous-même déclaré !");
 				return;
 			}
-			console.log(hash)
-			console.log(revHash)
-			con.query('SELECT message FROM bot_crushes WHERE rolecrush_id = "'+revHash+'";', function (err2,result2){
+			//console.log(hash)
+			//console.log(revHash)
+			con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+revHash+'";', function (err2,result2){
 				if (err2 || !result2.length) {
 					callback("Ce crush n'est pas réciproque pour le moment... Peut-être demain ?");
 					return;
@@ -843,7 +843,7 @@ ${correctedContent}`);
 				callback("Vous ne pouvez pas supprimer un crush que vous n'avez pas vous-même déclaré !");
 				return;
 			}
-			con.query('SELECT message FROM bot_crushes WHERE rolecrush_id = "'+revHash+'";', function (err2,result2){
+			con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+revHash+'";', function (err2,result2){
 				if (err2 || !result2.length) {
 					con.query('DELETE FROM bot_crushes WHERE crush_id = "'+hash+'";', function (err3){if (err3) throw err3;});
 					callback(["Crush supprimé !"]);
