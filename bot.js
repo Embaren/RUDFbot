@@ -41,10 +41,10 @@ bot.on('message',function(message){
 							cmds.crush(message.author,content,reply)
 							break;
 						case ('removecrush'):
-							cmds.removeCrush(message.author,content,reply)
+							cmds.removecrush(message.author,content,reply)
 							break;
 						case ('checkcrush'):
-							cmds.checkCrush(message.author,content,reply)
+							cmds.checkcrush(message.author,content,reply)
 							break;
 						default:
 							reply("Requête invalide",true);
