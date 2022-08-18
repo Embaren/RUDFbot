@@ -780,39 +780,66 @@ ${correctedContent}`);
 			return;
 		}
 			
+		tagHash = crypto.createHash('sha256').update(expTag, 'binary').digest('hex');
 			
+		/*
 		relationship = content[1];
 		if (! isRelationValid(relationship)){
 			callback(["*"+relationship+"* n'est pas une relation valide, celle-ci doit correspondre à un nombre entre 0 et "+(relationshipList.length-1).toString()+"."].concat(getRelationshipDesc()));
 			return;
 		}
-		message = content.slice(2,content.length).join(' ').trim();
+		*/
 		
-		hash = crypto.createHash('sha256').update(expTag+relationship+destTag, 'binary').digest('hex');
-		revHash = crypto.createHash('sha256').update(destTag+relationship+expTag, 'binary').digest('hex');
-		tagHash = crypto.createHash('sha256').update(expTag, 'binary').digest('hex');
-	
-		con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+hash+'" LIMIT 1;',  function (err,result){
-			if (err || !result.length) {
-				callback("Vous ne pouvez pas vérifier un crush que vous n'avez pas vous-même déclaré !");
-				return;
+		async function buildEmbed(){
+			relationshipTitles = getRelationshipDesc();
+
+			relationshipCompats = new Array(relationshipsList.length);
+			for(relationship=0;relationship<relationshipsList.length;relationship++){
+				hash = crypto.createHash('sha256').update(expTag+relationship+destTag, 'binary').digest('hex');
+				revHash = crypto.createHash('sha256').update(destTag+relationship+expTag, 'binary').digest('hex');
+				relationshipCompats[relationship] = await con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+hash+'" LIMIT 1;',  function (err,result){
+															if (err || !result.length) {
+																return [false,""];
+															}
+															return con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+revHash+'";', function (err2,result2){
+																if (err2 || !result2.length) {
+																	return [true,false];
+																}
+																encrypted = result2[0].message;
+																decipher = crypto.createDecipher('aes192', tagHash);
+																decipher.update(encrypted, 'hex', 'utf8');
+																decrypted = decipher.final('utf8')
+																return [true,decrypted];
+															});
+
+														});
 			}
-			//console.log(hash)
-			//console.log(revHash)
-			con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+revHash+'";', function (err2,result2){
-				if (err2 || !result2.length) {
-					callback("Ce crush n'est pas réciproque pour le moment... Peut-être demain ?");
-					return;
+
+			relationshipDesc = getRelationshipDesc();
+
+			const textEmbed = new Discord.MessageEmbed()
+				.setColor('#318ce7')
+				.setTitle("**Compatibilité avec "+destTag+"**")
+
+			hasCrush = false;
+			for(relationship=0;i<relationshipList.length;i++){
+				if(relationshipCompats[relationship][0]){
+					hasCrush = true
+					if(relationshipCompats[relationship][1]===false){
+						textEmbed.addField("❌ "+relationshipTitles[relationship+1], "*Ce crush n'est pas réciproque pour le moment... Peut-être demain ?*", true);
+					}
+					else{
+						textEmbed.addField("☑️ "+relationshipTitles[relationship+1], relationshipCompats[relationship][1], true);
+					}
 				}
-				encrypted = result2[0].message;
-				decipher = crypto.createDecipher('aes192', tagHash);
-				decipher.update(encrypted, 'hex', 'utf8');
-				decrypted = decipher.final('utf8')
-				callback(["Votre crush est réciproque !! Voilà le message qui vous a été laissé :","> "+decrypted,"C'est le début d'une belle histoire <3"]);
-				return;
-			});
-			
-		});
+			}
+			if(! hasCrush){
+				textEmbed.setDescription("Vous n'avez déclaré aucun crush sur cette personne. Aucune compatibilité n'est donc à vérifier !");
+
+			}
+			return textEmbed();
+		}
+		callback(buildEmbed());
 		return;
 	},
 	
@@ -860,7 +887,7 @@ ${correctedContent}`);
 		commandes=[
 			"crush [username#discriminator] [relationType] [message...]",
 			"removecrush [username#discriminator] [relationType]",
-			"checkcrush [username#discriminator] [relationType]"
+			"checkcrush [username#discriminator]"
 		];
 		descriptions=[
 			"Déclare anonymement un crush sur un utilisateur Discord. Le type de relation espéré est indiqué ",
