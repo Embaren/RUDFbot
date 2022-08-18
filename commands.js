@@ -767,7 +767,7 @@ ${correctedContent}`);
 		return;
 	},
 	
-	checkcrush : function(user,content,callback) {
+	checkcrush : async function(user,content,callback) {
 		if (content.length!=1){
 			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","> €checkcrush [username#discriminator] [relationType]"]);
 			return;
@@ -839,7 +839,7 @@ ${correctedContent}`);
 			}
 			return textEmbed;
 		}
-		callback(buildEmbed());
+		callback(await buildEmbed());
 		return;
 	},
 	
