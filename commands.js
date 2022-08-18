@@ -767,8 +767,8 @@ ${correctedContent}`);
 		return;
 	},
 	
-	checkcrush : async function(user,content,callback) {
-		if (content.length!=1){
+	checkcrush : function(user,content,callback) {
+		if (content.length!=2){
 			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","> €checkcrush [username#discriminator] [relationType]"]);
 			return;
 		}
@@ -790,56 +790,54 @@ ${correctedContent}`);
 		}
 		*/
 		
-		async function buildEmbed(){
-			relationshipTitles = getRelationshipDesc();
+		relationshipTitles = getRelationshipDesc();
+		relationshipDesc = getRelationshipDesc();
 
-			relationshipCompats = new Array(relationshipList.length);
-			for(relationship=0;relationship<relationshipList.length;relationship++){
+		const textEmbed = new Discord.MessageEmbed()
+			.setColor('#318ce7')
+			.setTitle("**Compatibilité avec "+destTag+"**")
+			hasCrush = false;
+
+		
+		async function iterRelationship(relationship){
+
+			if(relationship<relationshipsList.length){
 				hash = crypto.createHash('sha256').update(expTag+relationship+destTag, 'binary').digest('hex');
 				revHash = crypto.createHash('sha256').update(destTag+relationship+expTag, 'binary').digest('hex');
-				relationshipCompats[relationship] = await con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+hash+'" LIMIT 1;',  function (err,result){
+				relationshipCompats[relationship] = con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+hash+'" LIMIT 1;',  function (err,result){
 															if (err || !result.length) {
-																return [false,""];
+																iterRelationship(relationship+1);
+																return;
 															}
+															hasCrush = true;
 															return con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+revHash+'";', function (err2,result2){
 																if (err2 || !result2.length) {
-																	return [true,false];
+																	textEmbed.addField("❌ "+relationshipTitles[relationship+1], "*Ce crush n'est pas réciproque pour le moment... Peut-être demain ?*", true);
+																	iterRelationship(relationship+1);
+																	return;
 																}
 																encrypted = result2[0].message;
 																decipher = crypto.createDecipher('aes192', tagHash);
 																decipher.update(encrypted, 'hex', 'utf8');
 																decrypted = decipher.final('utf8')
-																return [true,decrypted];
+																textEmbed.addField("☑️ "+relationshipTitles[relationship+1], decrypted, true)
+																
+																iterRelationship(relationship+1);
+																return;
 															});
 
 														});
 			}
+			else{
+				if(! hasCrush){
+					textEmbed.setDescription("Vous n'avez déclaré aucun crush sur cette personne. Aucune compatibilité n'est donc à vérifier !");
 
-			relationshipDesc = getRelationshipDesc();
-
-			const textEmbed = new Discord.MessageEmbed()
-				.setColor('#318ce7')
-				.setTitle("**Compatibilité avec "+destTag+"**")
-
-			hasCrush = false;
-			for(relationship=0;i<relationshipList.length;i++){
-				if(relationshipCompats[relationship][0]){
-					hasCrush = true
-					if(relationshipCompats[relationship][1]===false){
-						textEmbed.addField("❌ "+relationshipTitles[relationship+1], "*Ce crush n'est pas réciproque pour le moment... Peut-être demain ?*", true);
-					}
-					else{
-						textEmbed.addField("☑️ "+relationshipTitles[relationship+1], relationshipCompats[relationship][1], true);
-					}
 				}
+				callback(textEmbed);
+				return;
 			}
-			if(! hasCrush){
-				textEmbed.setDescription("Vous n'avez déclaré aucun crush sur cette personne. Aucune compatibilité n'est donc à vérifier !");
-
-			}
-			return textEmbed;
 		}
-		callback(await buildEmbed());
+		iterRelationship(0);
 		return;
 	},
 	
