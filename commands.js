@@ -768,7 +768,7 @@ ${correctedContent}`);
 	},
 	
 	checkcrush : function(user,content,callback) {
-		if (content.length!=2){
+		if (content.length!=1){
 			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","> €checkcrush [username#discriminator] [relationType]"]);
 			return;
 		}
@@ -793,8 +793,8 @@ ${correctedContent}`);
 		async function buildEmbed(){
 			relationshipTitles = getRelationshipDesc();
 
-			relationshipCompats = new Array(relationshipsList.length);
-			for(relationship=0;relationship<relationshipsList.length;relationship++){
+			relationshipCompats = new Array(relationshipList.length);
+			for(relationship=0;relationship<relationshipList.length;relationship++){
 				hash = crypto.createHash('sha256').update(expTag+relationship+destTag, 'binary').digest('hex');
 				revHash = crypto.createHash('sha256').update(destTag+relationship+expTag, 'binary').digest('hex');
 				relationshipCompats[relationship] = await con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+hash+'" LIMIT 1;',  function (err,result){
