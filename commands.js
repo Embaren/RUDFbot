@@ -742,28 +742,18 @@ ${correctedContent}`);
 		message = content.slice(2,content.length).join(' ').trim();
 		
 		hash = crypto.createHash('sha256').update(expTag+relationship+destTag, 'binary').digest('hex');
-		tagHash = crypto.createHash('sha256').update(destTag, 'binary').digest('hex');
+		//tagHash = crypto.createHash('sha256').update(destTag, 'binary').digest('hex');
 		
-		cipher = crypto.createCipher('aes192', tagHash);
+		cipher = crypto.createCipher('aes192', destTag+relationship+expTag);
 		cipher.update(message, 'binary', 'hex');
 		encrypted = cipher.final('hex')
 	
 		con.query('INSERT INTO bot_crushes (crush_id, message) VALUES ("'+hash+'","'+encrypted+'") ON DUPLICATE KEY UPDATE message = "'+encrypted+'";', function (err2){if (err2) throw err2;});
 
 		callback(["Crush ajouté ! Vous pouvez vérifier s'il est réciproque n'importe quand en utilisant la commande :",
-				  "> €checkcrush [username#discriminator] [relationType]",
+				  "> €checkcrush [username#discriminator]",
 				  "Vous également supprimer ce crush en utilisant la commande :",
 				  "> €removecrush [username#discriminator] [relationType]"]);
-			
-		/*
-		decipher = crypto.createDecipher('aes192', tagHash);
-		decipher.update(encrypted, 'hex', 'utf8');
-		decrypted = decipher.final('utf8')
-		*/
-		
-		//text=([expTag,destTag,relationship,hash1,hash2,message,encrypted,decrypted]).join('/').trim();
-		//if (text!='') callback(text);
-		//else callback("impossible d'écrire cela.", true);
 		return;
 	},
 	
@@ -780,15 +770,7 @@ ${correctedContent}`);
 			return;
 		}
 			
-		tagHash = crypto.createHash('sha256').update(expTag, 'binary').digest('hex');
-			
-		/*
-		relationship = content[1];
-		if (! isRelationValid(relationship)){
-			callback(["*"+relationship+"* n'est pas une relation valide, celle-ci doit correspondre à un nombre entre 0 et "+(relationshipList.length-1).toString()+"."].concat(getRelationshipDesc()));
-			return;
-		}
-		*/
+		//tagHash = crypto.createHash('sha256').update(expTag, 'binary').digest('hex');
 		
 		relationshipTitles = getRelationshipDesc();
 
@@ -814,7 +796,7 @@ ${correctedContent}`);
 							return;
 						}
 						encrypted = result2[0].message;
-						decipher = crypto.createDecipher('aes192', tagHash);
+						decipher = crypto.createDecipher('aes192', expTag+relationship.toString()+destTag);
 						decipher.update(encrypted, 'hex', 'utf8');
 						decrypted = decipher.final('utf8')
 						textEmbed.addField("☑️ "+relationshipTitles[relationship+1], decrypted, true)
