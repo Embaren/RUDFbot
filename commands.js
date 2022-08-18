@@ -837,7 +837,7 @@ ${correctedContent}`);
 				textEmbed.setDescription("Vous n'avez déclaré aucun crush sur cette personne. Aucune compatibilité n'est donc à vérifier !");
 
 			}
-			return textEmbed();
+			return textEmbed;
 		}
 		callback(buildEmbed());
 		return;
