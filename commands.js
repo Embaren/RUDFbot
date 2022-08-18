@@ -768,8 +768,8 @@ ${correctedContent}`);
 	},
 	
 	checkcrush : function(user,content,callback) {
-		if (content.length!=2){
-			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","> €checkcrush [username#discriminator] [relationType]"]);
+		if (content.length!=1){
+			callback(["Les arguments ne conviennent pas. La commande doit être de la forme :","> €checkcrush [username#discriminator]"]);
 			return;
 		}
 		
@@ -791,42 +791,39 @@ ${correctedContent}`);
 		*/
 		
 		relationshipTitles = getRelationshipDesc();
-		relationshipDesc = getRelationshipDesc();
 
 		const textEmbed = new Discord.MessageEmbed()
 			.setColor('#318ce7')
 			.setTitle("**Compatibilité avec "+destTag+"**")
-			hasCrush = false;
+		hasCrush = false;
 
-		
-		async function iterRelationship(relationship){
-
-			if(relationship<relationshipsList.length){
+		function iterRelationship(relationship){
+			if(relationship<relationshipList.length){
 				hash = crypto.createHash('sha256').update(expTag+relationship+destTag, 'binary').digest('hex');
 				revHash = crypto.createHash('sha256').update(destTag+relationship+expTag, 'binary').digest('hex');
-				relationshipCompats[relationship] = con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+hash+'" LIMIT 1;',  function (err,result){
-															if (err || !result.length) {
-																iterRelationship(relationship+1);
-																return;
-															}
-															hasCrush = true;
-															return con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+revHash+'";', function (err2,result2){
-																if (err2 || !result2.length) {
-																	textEmbed.addField("❌ "+relationshipTitles[relationship+1], "*Ce crush n'est pas réciproque pour le moment... Peut-être demain ?*", true);
-																	iterRelationship(relationship+1);
-																	return;
-																}
-																encrypted = result2[0].message;
-																decipher = crypto.createDecipher('aes192', tagHash);
-																decipher.update(encrypted, 'hex', 'utf8');
-																decrypted = decipher.final('utf8')
-																textEmbed.addField("☑️ "+relationshipTitles[relationship+1], decrypted, true)
-																
-																iterRelationship(relationship+1);
-																return;
-															});
+				con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+hash+'" LIMIT 1;',  function (err,result){
+					if (err || !result.length) {
+						iterRelationship(relationship+1);
+						return;
+					}
+					hasCrush = true;
+					return con.query('SELECT message FROM bot_crushes WHERE crush_id = "'+revHash+'";', function (err2,result2){
+						if (err2 || !result2.length) {
+							textEmbed.addField("❌ "+relationshipTitles[relationship+1], "*Ce crush n'est pas réciproque pour le moment... Peut-être demain ?*", true);
+							iterRelationship(relationship+1);
+							return;
+						}
+						encrypted = result2[0].message;
+						decipher = crypto.createDecipher('aes192', tagHash);
+						decipher.update(encrypted, 'hex', 'utf8');
+						decrypted = decipher.final('utf8')
+						textEmbed.addField("☑️ "+relationshipTitles[relationship+1], decrypted, true)
 
-														});
+						iterRelationship(relationship+1);
+						return;
+					});
+
+				});
 			}
 			else{
 				if(! hasCrush){
