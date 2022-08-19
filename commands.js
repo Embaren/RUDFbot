@@ -911,9 +911,10 @@ ${correctedContent}`);
 			.setColor('#318ce7')
 			.setTitle("**Merci d'utiliser le bot Discord des RUDF !**")
 			.setDescription("Les commandes sont utilisées avec le préfixe '**€**'. Une étoile (*) indique que les permissions d'administrateur sont nécessaires.");
-			for (i=0;i<commandes.length;i++){
-				textEmbed.addField(commandes[i], descriptions[i], false );
-			}
+		for (i=0;i<commandes.length;i++){
+			textEmbed.addField(commandes[i], descriptions[i], false );
+		}
+		textEmbed.addField("CRUSH SECRET", "Vous avez un crush sur un utilisateur Discord ? Vous pouvez le déclarer anonymement et confidentiellement découvrir s'il est mutuel ! Toutes les explications avec la commande `€crushhelp`. Les commandes de crush sont à utiliser par MP et non sur le serveur pour garantir le meilleur anonymat !", true );
 			
 		callback(textEmbed);
 		return;

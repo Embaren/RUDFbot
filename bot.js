@@ -74,6 +74,15 @@ bot.on('message',function(message){
 						case ('crushhelp'):
 							cmds.crushhelp(reply)
 							break;
+						case ('crush'):
+							reply("Attention, les commandes de crush ne sont utilisables que par MP !");
+							break;
+						case ('removecrush'):
+							reply("Attention, les commandes de crush ne sont utilisables que par MP !");
+							break;
+						case ('checkcrush'):
+							reply("Attention, les commandes de crush ne sont utilisables que par MP !");
+							break;
 						case ('ping'):
 							cmds.ping(reply);
 							break;
