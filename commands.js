@@ -690,14 +690,16 @@ module.exports = {
 	
 	censor : function(message){		
 		correctedContent=message.content;
-		
 		for (i=0 ; i<correctionsLibrary.length ; i++) {
 			correctedContent=censorWord(correctionsLibrary[i],correctedContent);
 		}
 		
 		if(correctedContent!=message.content){
-			message.channel.send(`**<@${message.member.id}> voulait dire :**
-${correctedContent}`);
+			censorship = `**<@${message.member.id}> voulait dire :**
+${correctedContent}`;
+			if(censorship.length<=2000){
+				message.channel.send(censorship);
+			}
 		}
 		return;
 	},
