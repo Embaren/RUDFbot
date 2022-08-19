@@ -798,9 +798,14 @@ ${correctedContent}`;
 							return;
 						}
 						encrypted = result2[0].message;
-						decipher = crypto.createDecipher('aes192', expTag+relationship.toString()+destTag);
-						decipher.update(encrypted, 'hex', 'utf8');
-						decrypted = decipher.final('utf8')
+						try{
+							decipher = crypto.createDecipher('aes192', expTag+relationship.toString()+destTag);
+							decipher.update(encrypted, 'hex', 'utf8');
+							decrypted = decipher.final('utf8')
+						}
+						catch{
+							decrypted = "*Erreur : le message n'a pas pu être décriffré.*"
+						}
 						textEmbed.addField("☑️ "+relationshipTitles[relationship+1], decrypted, true)
 
 						iterRelationship(relationship+1);
