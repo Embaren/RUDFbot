@@ -3,7 +3,7 @@ const crypto = require('crypto');
 //type CipherType = "aes-128-gcm" | "aes-128-ccm" | "aes-192-gcm" | "aes-192-ccm" | "aes-256-gcm" | "aes-256-ccm";
 
 module.exports = {
-	createKeyForCipher : function (private password, cipherType) {
+	createKeyForCipher : function (password, cipherType) {
 		let numBytes;
 		switch (cipherType) {
 			case "aes-128-gcm": numBytes = 128 / 8; break;
@@ -14,7 +14,7 @@ module.exports = {
 }
 
 class Cipher {
-    constructor(private key, private config/*: {
+    constructor(key, config/*: {
         type: CipherType,
         numAuthTagBytes?: number,
         numIvBytes?: number,
