@@ -1,10 +1,10 @@
 const crypto = require('crypto');
 
-type CipherType = "aes-128-gcm" | "aes-128-ccm" | "aes-192-gcm" | "aes-192-ccm" | "aes-256-gcm" | "aes-256-ccm";
+//type CipherType = "aes-128-gcm" | "aes-128-ccm" | "aes-192-gcm" | "aes-192-ccm" | "aes-256-gcm" | "aes-256-ccm";
 
 module.exports = {
-	createKeyForCipher : function (private password: string, cipherType: CipherType): string {
-		let numBytes: number;
+	createKeyForCipher : function (private password, cipherType) {
+		let numBytes;
 		switch (cipherType) {
 			case "aes-128-gcm": numBytes = 128 / 8; break;
 			default: throw new Error(`TODO: support cipherType "${cipherType}"`);
@@ -14,12 +14,12 @@ module.exports = {
 }
 
 class Cipher {
-    constructor(private key: string, private config: {
+    constructor(private key, private config/*: {
         type: CipherType,
         numAuthTagBytes?: number,
         numIvBytes?: number,
         stringBase?: "base64",
-    }) {
+    }*/) {
         config.numAuthTagBytes = config.numAuthTagBytes || 16;
         config.numIvBytes = config.numIvBytes || 12;
         config.stringBase = config.stringBase || "base64";
@@ -28,7 +28,7 @@ class Cipher {
     }
 
 
-    public encrypt(msg: string) {
+    public encrypt(msg) {
         const {type, numIvBytes, numAuthTagBytes, stringBase} = this.config;
         const iv = crypto.randomBytes(numIvBytes);
         const cipher = crypto.createCipheriv(
@@ -47,7 +47,7 @@ class Cipher {
     }
 
 
-    public decrypt(cipherText: string) {
+    public decrypt(cipherText) {
         const {type, numIvBytes, numAuthTagBytes, stringBase} = this.config;
         let authTagCharLength: number = 24; // TODO: compute from numAuthTagBytes and stringBase
         let ivCharLength: number = 16; // TODO: compute from numIvBytes and stringBase
@@ -71,5 +71,5 @@ class Cipher {
     }
 }
 
-module.exports.CipherType = CipherType;
+//module.exports.CipherType = CipherType;
 module.exports.Cipher = Cipher;
