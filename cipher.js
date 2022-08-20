@@ -1,5 +1,4 @@
-import crypto from "crypto";
-
+const crypto = require('crypto');
 
 export type CipherType = "aes-128-gcm" | "aes-128-ccm" | "aes-192-gcm" | "aes-192-ccm" | "aes-256-gcm" | "aes-256-ccm";
 
