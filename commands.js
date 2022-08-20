@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 const Discord=require('discord.js');
 const crypto = require('crypto');
-const cipherWrapper = require('cipher.js');
+const cipherWrapper = require('./cipher.js');
 
 function isDiscordTag(string){
 	tagRegExp = /\#[0-9]{4}/;
