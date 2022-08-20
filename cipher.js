@@ -29,7 +29,10 @@ Cipher = class {
 
 
     encrypt(msg) {
-        const {type, numIvBytes, numAuthTagBytes, stringBase} = this.config;
+		const type = this.config.type;
+		const numIvBytes = this.config.numIvBytes;
+		const numAuthTagBytes = this.config.numAuthTagBytes;
+		const stringBase = this.config.stringBase;
         const iv = crypto.randomBytes(numIvBytes);
         const cipher = crypto.createCipheriv(
             type,
@@ -48,7 +51,10 @@ Cipher = class {
 
 
     decrypt(cipherText) {
-        const {type, numIvBytes, numAuthTagBytes, stringBase} = this.config;
+		const type = this.config.type;
+		const numIvBytes = this.config.numIvBytes;
+		const numAuthTagBytes = this.config.numAuthTagBytes;
+		const stringBase = this.config.stringBase;
         let authTagCharLength = 24; // TODO: compute from numAuthTagBytes and stringBase
         let ivCharLength = 16; // TODO: compute from numIvBytes and stringBase
 
