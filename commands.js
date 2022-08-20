@@ -747,7 +747,7 @@ ${correctedContent}`;
 		hash = crypto.createHash('sha256').update(expTag+relationship+destTag, 'binary').digest('hex');
 		//tagHash = crypto.createHash('sha256').update(destTag, 'binary').digest('hex');
 		
-		key = crypto.createHash('md5').update(destTag+relationship+expTag).digest("hex").slice(0,32).toString("base64");
+		key = crypto.createHash('md5').update(destTag+relationship+expTag).digest("base64");
 		
 		const cipher = new cipherWrapper.Cipher(key, {
 			type: "aes-128-gcm"
@@ -804,7 +804,7 @@ ${correctedContent}`;
 						}
 						encrypted = result2[0].message;
 						try{
-							key = crypto.createHash('md5').update(expTag+relationship+destTag).digest("hex").slice(0,32).toString("base64");
+							key = crypto.createHash('md5').update(expTag+relationship+destTag).digest("base64");
 							cipher = new cipherWrapper.Cipher(key, {
 								type: "aes-128-gcm"
 							});
