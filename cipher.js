@@ -49,8 +49,8 @@ Cipher = class {
 
     decrypt(cipherText) {
         const {type, numIvBytes, numAuthTagBytes, stringBase} = this.config;
-        let authTagCharLength: number = 24; // TODO: compute from numAuthTagBytes and stringBase
-        let ivCharLength: number = 16; // TODO: compute from numIvBytes and stringBase
+        let authTagCharLength = 24; // TODO: compute from numAuthTagBytes and stringBase
+        let ivCharLength = 16; // TODO: compute from numIvBytes and stringBase
 
         const authTag = Buffer.from(cipherText.slice(-authTagCharLength), stringBase);
         const iv = Buffer.from(cipherText.slice(0, ivCharLength), stringBase);
