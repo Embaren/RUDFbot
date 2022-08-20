@@ -9,7 +9,7 @@ module.exports = {
 			case "aes-128-gcm": numBytes = 128 / 8; break;
 			default: throw new Error(`TODO: support cipherType "${cipherType}"`);
 		}
-		return crypto.createHash('md5').update(password).digest("hex").toString("base64");
+		return crypto.createHash('md5').update(password).digest("hex").slice(2*numBytes).toString("base64");
 	}
 }
 
