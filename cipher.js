@@ -35,14 +35,14 @@ Cipher = class {
             type,
             Buffer.from(this.key, stringBase),
             iv,
-            { 'authTagLength': numAuthTagBytes } as any
+            { 'authTagLength': numAuthTagBytes }
         );
 
         return [
             iv.toString(stringBase),
             cipher.update(msg, "utf8", stringBase),
             cipher.final(stringBase),
-            (cipher as any).getAuthTag().toString(stringBase)
+            cipher.getAuthTag().toString(stringBase)
         ].join("");
     }
 
@@ -60,9 +60,9 @@ Cipher = class {
             type,
             Buffer.from(this.key, stringBase),
             iv,
-            { 'authTagLength': numAuthTagBytes } as any
+            { 'authTagLength': numAuthTagBytes }
         );
-        (decipher as any).setAuthTag(authTag);
+        decipher.setAuthTag(authTag);
 
         return [
             decipher.update(encryptedMessage, stringBase, "utf8"),
