@@ -13,7 +13,7 @@ module.exports = {
 
 }
 
-class Cipher {
+Cipher = class {
     constructor(key, config/*: {
         type: CipherType,
         numAuthTagBytes?: number,
@@ -28,7 +28,7 @@ class Cipher {
     }
 
 
-    public encrypt(msg) {
+    encrypt(msg) {
         const {type, numIvBytes, numAuthTagBytes, stringBase} = this.config;
         const iv = crypto.randomBytes(numIvBytes);
         const cipher = crypto.createCipheriv(
@@ -47,7 +47,7 @@ class Cipher {
     }
 
 
-    public decrypt(cipherText) {
+    decrypt(cipherText) {
         const {type, numIvBytes, numAuthTagBytes, stringBase} = this.config;
         let authTagCharLength: number = 24; // TODO: compute from numAuthTagBytes and stringBase
         let ivCharLength: number = 16; // TODO: compute from numIvBytes and stringBase
