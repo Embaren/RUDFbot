@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 const Discord=require('discord.js');
 const crypto = require('crypto');
-import * as cypherWrapper from 'cipher.js';
+const cipherWrapper = require('cipher.js');
 
 function isDiscordTag(string){
 	tagRegExp = /\#[0-9]{4}/;
@@ -749,7 +749,7 @@ ${correctedContent}`;
 		
 		key = crypto.createHash('md5').update(destTag+relationship+expTag).digest("hex").toString("base64");
 		
-		const cipher = new cypherWrapper.Cipher(key, {
+		const cipher = new cipherWrapper.Cipher(key, {
 			type: "aes-128-gcm"
 		});
 		
@@ -805,7 +805,7 @@ ${correctedContent}`;
 						encrypted = result2[0].message;
 						try{
 							key = crypto.createHash('md5').update(expTag+relationship+destTag).digest("hex").toString("base64");
-							cipher = new cypherWrapper.Cipher(key, {
+							cipher = new cipherWrapper.Cipher(key, {
 								type: "aes-128-gcm"
 							});
 														
