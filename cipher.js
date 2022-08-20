@@ -1,17 +1,19 @@
 const crypto = require('crypto');
 
-export type CipherType = "aes-128-gcm" | "aes-128-ccm" | "aes-192-gcm" | "aes-192-ccm" | "aes-256-gcm" | "aes-256-ccm";
+type CipherType = "aes-128-gcm" | "aes-128-ccm" | "aes-192-gcm" | "aes-192-ccm" | "aes-256-gcm" | "aes-256-ccm";
 
-export function createKeyForCipher(private password: string, cipherType: CipherType): string {
-    let numBytes: number;
-    switch (cipherType) {
-        case "aes-128-gcm": numBytes = 128 / 8; break;
-        default: throw new Error(`TODO: support cipherType "${cipherType}"`);
-    }
-	return crypto.createHash('md5').update(password).digest("hex").toString("base64");
+module.exports = {
+	createKeyForCipher : function (private password: string, cipherType: CipherType): string {
+		let numBytes: number;
+		switch (cipherType) {
+			case "aes-128-gcm": numBytes = 128 / 8; break;
+			default: throw new Error(`TODO: support cipherType "${cipherType}"`);
+		}
+		return crypto.createHash('md5').update(password).digest("hex").toString("base64");
+
 }
 
-export class Cipher {
+class Cipher {
     constructor(private key: string, private config: {
         type: CipherType,
         numAuthTagBytes?: number,
@@ -68,3 +70,6 @@ export class Cipher {
         ].join("");
     }
 }
+
+module.exports.CipherType = CipherType;
+module.exports.Cipher = Cipher;
