@@ -10,7 +10,7 @@ module.exports = {
 			default: throw new Error(`TODO: support cipherType "${cipherType}"`);
 		}
 		return crypto.createHash('md5').update(password).digest("hex").toString("base64");
-
+	}
 }
 
 Cipher = class {
