@@ -36,6 +36,7 @@ Cipher = class {
 		const numAuthTagBytes = this.config.numAuthTagBytes;
 		const stringBase = this.config.stringBase;
         const iv = crypto.randomBytes(numIvBytes);
+		console.log(this.key);
         const cipher = crypto.createCipheriv(
             type,
             Buffer.from(this.key, stringBase),
