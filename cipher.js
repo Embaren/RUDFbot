@@ -25,6 +25,8 @@ Cipher = class {
         config.stringBase = config.stringBase || "base64";
         if (config.numAuthTagBytes < 16) { console.warn(`Be careful of short auth tags`); }
         if (config.numIvBytes < 12) { console.warn(`Be careful of short ivs`); }
+		this.key = key;
+		this.config = config;
     }
 
 
