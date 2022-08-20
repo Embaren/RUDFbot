@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const Discord=require('discord.js');
 const crypto = require('crypto');
+import * as cypherWrapper from 'cipher.js';
 
 function isDiscordTag(string){
 	tagRegExp = /\#[0-9]{4}/;
@@ -746,9 +747,13 @@ ${correctedContent}`;
 		hash = crypto.createHash('sha256').update(expTag+relationship+destTag, 'binary').digest('hex');
 		//tagHash = crypto.createHash('sha256').update(destTag, 'binary').digest('hex');
 		
-		cipher = crypto.createCipher('aes192', destTag+relationship+expTag);
-		cipher.update(message, 'binary', 'hex');
-		encrypted = cipher.final('hex')
+		key = crypto.createHash('md5').update(destTag+relationship+expTag).digest("hex").toString("base64");
+		
+		const cipher = new cypherWrapper.Cipher(key, {
+			type: "aes-128-gcm"
+		});
+		
+		const encrypted = cipher.encrypt(message) + "";
 	
 		con.query('INSERT INTO bot_crushes (crush_id, message) VALUES ("'+hash+'","'+encrypted+'") ON DUPLICATE KEY UPDATE message = "'+encrypted+'";', function (err2){if (err2) throw err2;});
 
@@ -799,9 +804,12 @@ ${correctedContent}`;
 						}
 						encrypted = result2[0].message;
 						try{
-							decipher = crypto.createDecipher('aes192', expTag+relationship.toString()+destTag);
-							decipher.update(encrypted, 'hex', 'utf8');
-							decrypted = decipher.final('utf8')
+							key = crypto.createHash('md5').update(expTag+relationship+destTag).digest("hex").toString("base64");
+							cipher = new cypherWrapper.Cipher(key, {
+								type: "aes-128-gcm"
+							});
+														
+							decrypted = cipher.decrypt(encrypted) + "";
 						}
 						catch{
 							decrypted = "*Erreur : le message n'a pas pu être décriffré.*"
